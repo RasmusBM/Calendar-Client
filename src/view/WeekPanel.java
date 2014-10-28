@@ -1,5 +1,7 @@
 package view;
 
-public class WeekPanel {
+import javax.swing.JPanel;
+
+public class WeekPanel extends JPanel {
 
 }
