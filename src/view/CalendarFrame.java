@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 public class CalendarFrame extends JFrame {
 
 	//Declaration of global style constants
-	public static final int WITDH = 400;
-	public static final int HEIGHT = 400;
+//	public static final int WITDH = 400;
+//	public static final int HEIGHT = 400;
 	
 	//Declaration of attributes
 	private DayPanel dayPanel;
@@ -15,16 +15,16 @@ public class CalendarFrame extends JFrame {
 	private JPanel contentPane;
 	private CardLayout c;
 	
-	public static final String DAYPANEL = "dayPanel";
 	public static final String WEEKPANEL = "weekPanel";
+	public static final String DAYPANEL = "dayPanel";
 	
 	public CalendarFrame(){
 		
-		setSize(WIDTH, HEIGHT);
+		setSize(600, 600);
 		
 		//instances of the JPanels 
-		dayPanel = new DayPanel();
 		weekPanel = new WeekPanel();
+		dayPanel = new DayPanel();
 		
 		
 		//adding the contentPane
@@ -33,8 +33,8 @@ public class CalendarFrame extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		c = (CardLayout) getContentPane().getLayout();
 		
-		contentPane.add(dayPanel, DAYPANEL);
 		contentPane.add(weekPanel, WEEKPANEL);
+		contentPane.add(dayPanel, DAYPANEL);
 		
 	}
 	
