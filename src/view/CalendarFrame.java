@@ -12,6 +12,7 @@ public class CalendarFrame extends JFrame {
 	//Declaration of attributes
 	private DayPanel dayPanel;
 	private WeekPanel weekPanel;
+	private LoginPanel loginPanel;
 	private JPanel contentPane;
 	private CardLayout c;
 	

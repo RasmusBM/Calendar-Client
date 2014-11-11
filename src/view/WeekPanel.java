@@ -39,13 +39,11 @@ public class WeekPanel extends JPanel {
 //        daytimes.add(new JLabel("11.00"), BorderLayout.WEST);;
 //        add(daytimes);
 //        
-		int row = 10;
-		int col = 1;
 //		
 //         setLayout(new BorderLayout());
 //         setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
 //  
-         for (int i =1; i<=(row*col); i++)
+         for (int i =1; i<=(7); i++)
           {
              JPanel pan = new JPanel();
              pan.setAlignmentY(LEFT_ALIGNMENT);
