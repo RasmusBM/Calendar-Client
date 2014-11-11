@@ -1,7 +1,10 @@
 package view;
 import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import controller.ActionController;
 
 public class CalendarFrame extends JFrame {
 
@@ -10,20 +13,24 @@ public class CalendarFrame extends JFrame {
 //	public static final int HEIGHT = 400;
 	
 	//Declaration of attributes
+	private ActionController actionController;
+	private LoginPanel loginPanel;
 	private DayPanel dayPanel;
 	private WeekPanel weekPanel;
-	private LoginPanel loginPanel;
 	private JPanel contentPane;
 	private CardLayout c;
 	
+	public static final String LOGINPANEL = "loginPanel";
 	public static final String WEEKPANEL = "weekPanel";
 	public static final String DAYPANEL = "dayPanel";
 	
 	public CalendarFrame(){
 		
 		setSize(600, 600);
+		actionController = new ActionController(this);
 		
 		//instances of the JPanels 
+		loginPanel = new LoginPanel(actionController);
 		weekPanel = new WeekPanel();
 		dayPanel = new DayPanel();
 		
@@ -34,6 +41,7 @@ public class CalendarFrame extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		c = (CardLayout) getContentPane().getLayout();
 		
+		contentPane.add(loginPanel, LOGINPANEL);
 		contentPane.add(weekPanel, WEEKPANEL);
 		contentPane.add(dayPanel, DAYPANEL);
 		
@@ -51,4 +59,6 @@ public class CalendarFrame extends JFrame {
 	public WeekPanel getWeekPanel(){
 		return weekPanel;
 	}
+	
+	
 }
