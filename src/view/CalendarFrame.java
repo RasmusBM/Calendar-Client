@@ -60,5 +60,8 @@ public class CalendarFrame extends JFrame {
 		return weekPanel;
 	}
 	
+	public LoginPanel getLoginPanel(){
+		return loginPanel;
+	}
 	
 }

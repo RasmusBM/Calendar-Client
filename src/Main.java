@@ -12,6 +12,9 @@ public class Main {
 		cf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
+		
+		
+		
 	}
 
 }

@@ -40,4 +40,24 @@ public class LoginPanel extends JPanel {
 		btnLogin.setActionCommand(LOGINSUBMIT);
 		
 	}
+
+
+	public JTextField getTxtremail() {
+		return txtremail;
+	}
+
+
+	public void setTxtremail(JTextField txtremail) {
+		this.txtremail = txtremail;
+	}
+
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
+	}
 }
