@@ -29,7 +29,10 @@ public class ActionController implements ActionListener{
 			System.out.println(email + password);
 			
 			try {
-				cc.Login(email, password);
+				String reply = cc.Login(email, password);
+				if(reply.equals("true")){
+					cf.Show(cf.WEEKPANEL);
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
