@@ -4,7 +4,7 @@ public class Users implements java.io.Serializable {
 
 	private String email;
 	private String password;
-	private int active;
+	private boolean active;
 	private  final long serialVersionUID = 2L;
 	private String overallID = "logIn";
 	
@@ -27,10 +27,10 @@ public class Users implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getActive() {
+	public boolean getActive() {
 		return active;
 	}
-	public void setActive(int active) {
+	public void setActive(boolean active) {
 		this.active = active;
 	}
 	
