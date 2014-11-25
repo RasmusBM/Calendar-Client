@@ -14,7 +14,7 @@ public class ServerConnection {
 	
 	public void establishConnection() throws Exception{
 		
-		clientSocket = new Socket("localhost", 7000);
+		clientSocket = new Socket("localhost", 8888);
 		
 		 outToServer = new DataOutputStream(
 				clientSocket.getOutputStream());
@@ -42,6 +42,8 @@ public class ServerConnection {
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(
 				clientSocket.getInputStream()));
 		String modifiedSentence = inFromServer.readLine();
+		
+		System.out.println(modifiedSentence);
 		
 		return modifiedSentence;
 	}

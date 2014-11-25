@@ -21,7 +21,6 @@ public class ClientController {
 		
 		u.setEmail(username);
 		u.setPassword(password);
-		u.setActive(true);
 		
 		String gsonString = gson.toJson(u);
 		

@@ -30,7 +30,7 @@ public class ActionController implements ActionListener{
 			
 			try {
 				String reply = cc.Login(email, password);
-				if(reply.equals("true")){
+				if(reply.equals("Login Successful")){
 					cf.Show(cf.WEEKPANEL);
 				}
 			} catch (IOException e1) {

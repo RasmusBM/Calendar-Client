@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 public class CalendarTry2 {
 int month = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH);
-int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);;
+int year = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
 JLabel l = new JLabel("", JLabel.CENTER);
 String day = "";
 JDialog d;
@@ -80,11 +80,13 @@ public void displayDate() {
       java.util.Calendar cal = java.util.Calendar.getInstance();
       cal.set(year, month, 1);
       int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
+//      System.out.println(dayOfWeek);
       int daysInMonth = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
+//      System.out.println(daysInMonth);
       for (int x = 6 + dayOfWeek, day = 1; day <= daysInMonth; x++, day++)
               button[x].setText("" + day);
       l.setText(sdf.format(cal.getTime()));
-      d.setTitle("Date Picker");
+//      d.setTitle("Date Picker");
 }
 
 public String setPickedDate() {
