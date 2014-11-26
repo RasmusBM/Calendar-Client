@@ -6,12 +6,13 @@ import java.io.IOException;
 
 import view.CalendarFrame;
 import view.LoginPanel;
+import view.WeekPanel;
 
 public class ActionController implements ActionListener{
 
 	private CalendarFrame cf;
 	ClientController cc = new ClientController();
-	
+
 	public ActionController(CalendarFrame cf){
 		
 		this.cf = cf;
@@ -45,8 +46,13 @@ public class ActionController implements ActionListener{
 			
 		}
 		
-		else if(cmd.equals(null)){
+		else if(cmd.equals(WeekPanel.PREVIOUS)){
 			
+			cf.getWeekPanel().refreshDate(-1);
+		}
+		
+		else if(cmd.equals(WeekPanel.NEXT)){
+			cf.getWeekPanel().refreshDate(+1);
 		}
 	}
 }
