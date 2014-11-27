@@ -182,13 +182,16 @@ public class WeekPanel extends JPanel{
     
     public void displayDate2(int weekNumber, int yearNumber){
     	
-    	cal.setFirstDayOfWeek(Calendar.MONDAY);
-    	cal.set(Calendar.WEEK_OF_YEAR, START_WEEK);
-    	cal.set(Calendar.YEAR, START_YEAR);
+//    	cal.setFirstDayOfWeek(Calendar.TUESDAY);
+//    	cal.set(Calendar.WEEK_OF_YEAR, START_WEEK);
+//    	cal.set(Calendar.YEAR, START_YEAR);
+     	cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+    	cal.set(Calendar.WEEK_OF_YEAR, weekNumber);
+    	cal.set(Calendar.YEAR, yearNumber);
     	
     	
-    	int weekday = cal.get(Calendar.DAY_OF_WEEK);
-    	cal.add(Calendar.DATE,1 - weekday);
+//    	int weekday = cal.get(Calendar.DAY_OF_WEEK);
+//    	cal.add(Calendar.DATE,1 - weekday);
     	int iMonth, iDay;
     	
     	for (int x = 0; x <  button.length; x++){
@@ -209,6 +212,8 @@ public class WeekPanel extends JPanel{
     		case 11:button[x].setText("Dec" + MONTHDAYSEPARATOR + (iDay) );break;
     		}
     		cal.add(Calendar.DATE, 1);
+    		
+    		button[x].addActionListener(actionController);
     	}
     	
     }
@@ -216,15 +221,24 @@ public class WeekPanel extends JPanel{
     
     public void refreshDate(int newWeek){
     	
-    	int nextWeek = START_WEEK += newWeek;
+//    	int nextWeek = START_WEEK += newWeek;
     	
-    	String stringNextWeek = String.valueOf(nextWeek);
+    	START_WEEK =  START_WEEK + newWeek;
+    	displayDate2(START_WEEK,START_YEAR);
     	
-    	displayDate2(START_WEEK += newWeek,START_YEAR);
+//    	if(START_WEEK < 53){
+    		
+//    	displayDate2(START_WEEK += newWeek,START_YEAR);
+//    	}
+//    	else{
+//    		START_WEEK = 1;
+//    		displayDate2(START_WEEK,START_YEAR);
+//    	}
+    	String stringNextWeek = String.valueOf(START_WEEK);
     	
     	uge.setText(stringNextWeek);
     
-    	nextWeek = START_WEEK -= newWeek;
+//    	nextWeek = START_WEEK -= newWeek;
     	
     }
     
