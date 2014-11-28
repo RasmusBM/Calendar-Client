@@ -43,7 +43,7 @@ public class ServerConnection {
 				clientSocket.getInputStream()));
 		String modifiedSentence = inFromServer.readLine();
 		
-		System.out.println(modifiedSentence);
+//		System.out.println(modifiedSentence);
 		
 		return modifiedSentence;
 	}

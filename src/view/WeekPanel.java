@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import controller.ActionController;
 
@@ -37,6 +38,7 @@ public class WeekPanel extends JPanel implements ActionListener{
 	private JPanel p2;
 	private JPanel p3;
 	private JPanel p4;
+	private JPanel p5;
 	private JLabel qotd;
 	private static int START_WEEK;
 	private static int START_YEAR;
@@ -91,67 +93,48 @@ public class WeekPanel extends JPanel implements ActionListener{
 //        displayDate(START_WEEK,START_YEAR);
         displayDate2(START_WEEK,START_YEAR);
 
-        p3 = new JPanel(new GridLayout(1,5));
-        p3.setBackground(Color.green);
+        p3 = new JPanel();
+        p3.setBackground(Color.pink);
+        p3.setPreferredSize(new Dimension(100,60));
+        p3.setBorder(new EmptyBorder(0,0,0,0));
         p3.setVisible(true);
+        add(p3, BorderLayout.SOUTH);
+//        
+        p4 = new JPanel(new GridLayout(1,5));
+        p4.setBackground(Color.green);
+        p4.setVisible(true);
         //adding button
         back = new JButton("<< Previous");
         back.addActionListener(actionController);
         back.setActionCommand(PREVIOUS);
-        p3.add(back);
+        p4.add(back);
         //adding label
         ugenr = new JLabel("Ugenr:");
-        p3.add(ugenr);
+        p4.add(ugenr);
         //adding textfield
         uge = new JTextField(""+ START_WEEK);
-        p3.add(uge);
+        p4.add(uge);
         //adding button
         go = new JButton("Go to week");
-        p3.add(go);
+        p4.add(go);
         //adding button
         forward = new JButton("Next >>");
         forward.addActionListener(actionController);
         forward.setActionCommand(NEXT);
-        p3.add(forward);
+        p4.add(forward);
         //adding panel3
-        add(p3, BorderLayout.SOUTH);
-        
-//        p4 = new JPanel(new FlowLayout());
-//        p4.setBackground(Color.orange);
-//        p4.setVisible(false);
-//        qotd = new JLabel("QTOD: "+"Im a cop you idiot!");
-//        p4.add(qotd);
+        p3.add(p4, BorderLayout.NORTH);
 //        add(p4, BorderLayout.SOUTH);
         
-//        forward = new JButton("Next");
-//        add(forward);
+        p5 = new JPanel(new GridLayout(1,5));
+        p5.setBackground(Color.orange);
+        p5.setPreferredSize(new Dimension(600,20));
+        p5.setVisible(true);
+        qotd = new JLabel();
+        p5.add(qotd);
+        p3.add(p5, BorderLayout.SOUTH);
+//        add(p4, BorderLayout.SOUTH);
         
-
-        
-        
-//        for(int i = 1; i <31; i++){
-//            add(new JLabel("" + i));
-//        }
-		
-//        JPanel daytimes = new JPanel(new BorderLayout());
-//        daytimes.add(new JLabel("08.00"), BorderLayout.WEST);
-//        daytimes.add(new JLabel("09.00"), BorderLayout.WEST);
-//        daytimes.add(new JLabel("10.00"), BorderLayout.WEST);;
-//        daytimes.add(new JLabel("11.00"), BorderLayout.WEST);;
-//        add(daytimes);
-//        
-//		
-//         setLayout(new BorderLayout());
-//         setBorder(BorderFactory.createEmptyBorder(1,1,1,1));
-//  
-//         for (int i =1; i<=(7); i++)
-//          {
-//             JButton pan = new JButton();
-//             pan.setAlignmentY(LEFT_ALIGNMENT);
-//             pan.setPreferredSize(new Dimension(30,30));
-//             pan.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-//             add(pan);
-//           } 
          
 
     }
@@ -272,6 +255,16 @@ public class WeekPanel extends JPanel implements ActionListener{
 
 	public static void setMONTHDAYSEPARATOR(String mONTHDAYSEPARATOR) {
 		MONTHDAYSEPARATOR = mONTHDAYSEPARATOR;
+	}
+
+
+	public JLabel getQotd() {
+		return qotd;
+	}
+
+
+	public void setQotd(JLabel qotd) {
+		this.qotd = qotd;
 	}
 
 

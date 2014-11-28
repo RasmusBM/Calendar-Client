@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import view.CalendarFrame;
+import view.DayPanel;
 import view.LoginPanel;
 import view.WeekPanel;
 
@@ -33,6 +34,13 @@ public class ActionController implements ActionListener{
 				String reply = cc.Login(email, password);
 				if(reply.equals("Login Successful")){
 					cf.Show(cf.WEEKPANEL);
+					System.out.println("Naar hertil");
+					
+					String quote = cc.getQuote();
+					
+					cf.getWeekPanel().getQotd().setText("QOTD: " + quote);
+					
+					
 				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -69,35 +77,41 @@ public class ActionController implements ActionListener{
 			//setting text from button to specfic month
 			int iMonth = 0;
 			if(monthString.equals("Jan")){
-			iMonth = 0;
-			}else if(monthString.equals("Feb")){
 			iMonth = 1;
-			}else if(monthString.equals("Mar")){
+			}else if(monthString.equals("Feb")){
 			iMonth = 2;
-			}else if(monthString.equals("Apr")){
+			}else if(monthString.equals("Mar")){
 			iMonth = 3;
-			}else if(monthString.equals("May")){
+			}else if(monthString.equals("Apr")){
 			iMonth = 4;
-			}else if(monthString.equals("Jun")){
+			}else if(monthString.equals("May")){
 			iMonth = 5;
-			}else if(monthString.equals("Jul")){
+			}else if(monthString.equals("Jun")){
 			iMonth = 6;
-			}else if(monthString.equals("Aug")){
+			}else if(monthString.equals("Jul")){
 			iMonth = 7;
-			}else if(monthString.equals("Sep")){
+			}else if(monthString.equals("Aug")){
 			iMonth = 8;
-			}else if(monthString.equals("Oct")){
+			}else if(monthString.equals("Sep")){
 			iMonth = 9;
-			}else if(monthString.equals("Nov")){
+			}else if(monthString.equals("Oct")){
 			iMonth = 10;
-			}else if(monthString.equals("Dec")){
+			}else if(monthString.equals("Nov")){
 			iMonth = 11;
+			}else if(monthString.equals("Dec")){
+			iMonth = 12;
 			}
 			
 			//setting selected 
 			int sDay = Integer.parseInt(currentDay.substring(iMid+1, currentDay.length()));
 			
 			System.out.println(iMonth + "" + sDay);
+			
+			
+			
+			cf.setTitle(cmd);
+			cf.Show(cf.DAYPANEL);
+			
 		}
 	}
 }

@@ -31,4 +31,14 @@ public class ClientController {
 		return sc.recive();
 		
 	}
+	
+	public String getQuote() throws Exception{ 
+		
+		String gsonString = gson.toJson("getQuote");
+		
+		sc.Send(gsonString);
+		
+		
+		return sc.recive();
+	}
 }
