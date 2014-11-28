@@ -36,9 +36,9 @@ public class CalendarFrame extends JFrame {
 //		selectedDay = cal.getSelectedDay();
 		
 		//instances of the JPanels 
-		loginPanel = new LoginPanel(actionController);
+//		loginPanel = new LoginPanel(actionController);
 		weekPanel = new WeekPanel(actionController);
-		dayPanel = new DayPanel();
+		dayPanel = new DayPanel(actionController);
 		
 		
 		//adding the contentPane

@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -18,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import controller.ActionController;
 
-public class WeekPanel extends JPanel{
+public class WeekPanel extends JPanel implements ActionListener{
 
 	private WeekPanel wk;
 	private ActionController actionController;
@@ -34,13 +36,16 @@ public class WeekPanel extends JPanel{
 	private JPanel p1;
 	private JPanel p2;
 	private JPanel p3;
+	private JPanel p4;
+	private JLabel qotd;
 	private static int START_WEEK;
 	private static int START_YEAR;
-	private static String MONTHDAYSEPARATOR =" ";
+	public static String MONTHDAYSEPARATOR =" ";
 	
 	//Declaration of panel constants
 	public static final String PREVIOUS = "Previous";
 	public static final String NEXT = "Next";
+	public static final String DATE = "Date";
 	
 
 	
@@ -111,7 +116,12 @@ public class WeekPanel extends JPanel{
         //adding panel3
         add(p3, BorderLayout.SOUTH);
         
-        
+//        p4 = new JPanel(new FlowLayout());
+//        p4.setBackground(Color.orange);
+//        p4.setVisible(false);
+//        qotd = new JLabel("QTOD: "+"Im a cop you idiot!");
+//        p4.add(qotd);
+//        add(p4, BorderLayout.SOUTH);
         
 //        forward = new JButton("Next");
 //        add(forward);
@@ -237,9 +247,38 @@ public class WeekPanel extends JPanel{
     	String stringNextWeek = String.valueOf(START_WEEK);
     	
     	uge.setText(stringNextWeek);
+    	
+    	
     
 //    	nextWeek = START_WEEK -= newWeek;
     	
     }
+
+
+	public JButton[] getButton() {
+		return button;
+	}
+
+
+	public void setButton(JButton[] button) {
+		this.button = button;
+	}
+
+
+	public static String getMONTHDAYSEPARATOR() {
+		return MONTHDAYSEPARATOR;
+	}
+
+
+	public static void setMONTHDAYSEPARATOR(String mONTHDAYSEPARATOR) {
+		MONTHDAYSEPARATOR = mONTHDAYSEPARATOR;
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+	}
+    
     
 }
