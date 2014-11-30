@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import shared.Event;
+import shared.User;
 import view.CalendarFrame;
 import view.DayPanel;
 import view.LoginPanel;
@@ -12,7 +17,9 @@ import view.WeekPanel;
 public class ActionController implements ActionListener{
 
 	private CalendarFrame cf;
+	User currentUser = new User();
 	ClientController cc = new ClientController();
+	Gson gson = new GsonBuilder().create();
 
 	public ActionController(CalendarFrame cf){
 		
@@ -31,12 +38,31 @@ public class ActionController implements ActionListener{
 			System.out.println(email + password);
 			
 			try {
+				
+				
 				String reply = cc.Login(email, password);
-				if(reply.equals("Login Successful")){
+				
+				
+				//If user is logged in 
+				if(!reply.equals("invalid")){
+					
+					
+					currentUser = (User) gson.fromJson(reply, User.class);
+					
 					cf.setTitle("Week view");
 					cf.show(cf.WEEKPANEL);
+					
+					//getting quote and displaying it
 					String quote = cc.getQuote();
 					cf.getWeekPanel().getQotd().setText("QOTD: " + quote);
+					
+					//fetching calendars and events
+					String result = cc.getEvents(currentUser.getUserId());
+					
+					Event[] event = gson.fromJson(result, Event[].class);
+					for(int i = 0; i < event.length; i++) {
+					System.out.println(event[i].getId());
+					}
 					
 					
 				}

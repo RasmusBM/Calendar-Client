@@ -6,27 +6,28 @@ import java.net.UnknownHostException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import shared.SimpleCall;
 import shared.User;
 
 public class ClientController {
 
-	User u = new User();
+	User currentUser = new User();
 	Gson gson = new GsonBuilder().create();
 	ServerConnection sc = new ServerConnection();
+	SimpleCall sim = new SimpleCall();
 	
 	
 	public String Login(String username, String password) throws Exception {
 	
 		System.out.println("login koerer");
 		
-		u.setEmail(username);
-		u.setPassword(password);
+		currentUser.setEmail(username);
+		currentUser.setPassword(password);
 		
-		String gsonString = gson.toJson(u);
-		
-		System.out.println(gsonString);
+		String gsonString = gson.toJson(currentUser);
 		
 		sc.Send(gsonString);
+
 		
 		return sc.recive();
 		
@@ -38,6 +39,17 @@ public class ClientController {
 		
 		sc.Send(gsonString);
 		
+		
+		return sc.recive();
+	}
+	
+	public String getEvents(int userId) throws Exception{
+		
+		sim.setOverallID("getEvents");
+		sim.setUserId(userId);
+		
+		String gsonString = gson.toJson(sim);
+		sc.Send(gsonString);
 		
 		return sc.recive();
 	}

@@ -42,9 +42,7 @@ public class ServerConnection {
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(
 				clientSocket.getInputStream()));
 		String modifiedSentence = inFromServer.readLine();
-		
-//		System.out.println(modifiedSentence);
-		
+				
 		return modifiedSentence;
 	}
 	

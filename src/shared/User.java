@@ -2,6 +2,7 @@ package shared;
 
 public class User implements java.io.Serializable {
 
+	private int userId;
 	private String email;
 	private String password;
 	private boolean active;
@@ -32,6 +33,12 @@ public class User implements java.io.Serializable {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	
 	
