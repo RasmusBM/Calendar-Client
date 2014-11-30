@@ -23,7 +23,6 @@ public class Event  implements java.io.Serializable {
     private Timestamp endTimestamp;
     private String type;
     private boolean active;
-    private ArrayList<Event> event;
     
     
     public Event(int id, String eventid, int calendarId, int createdby,
@@ -41,6 +40,10 @@ public class Event  implements java.io.Serializable {
 		this.type = type;
 		this.active = active;
 	}
+    
+    public Event(){
+    	
+    }
     
     public String getOverallID() {
 		return overallID;
@@ -126,16 +129,12 @@ public class Event  implements java.io.Serializable {
 	}
 	public Timestamp getStartTimestamp() {
 		
-		Date startTimeStamp = new Date((Integer.parseInt(start.get(0))-1900),Integer.parseInt(start.get(1)),Integer.parseInt(start.get(2)),Integer.parseInt(start.get(3)), Integer.parseInt(start.get(4)));
-		Timestamp t = new java.sql.Timestamp(startTimeStamp.getTime());
-		return t;
+		return this.startTimestamp;
 	}
 
 	public Timestamp getEndTimestamp() {
 		
-		Date endTimeStamp = new Date((Integer.parseInt(end.get(0))-1900),Integer.parseInt(end.get(1)),Integer.parseInt(end.get(2)),Integer.parseInt(end.get(3)), Integer.parseInt(end.get(4)));
-		Timestamp t = new java.sql.Timestamp(endTimeStamp.getTime());
-		return t;
+		return endTimestamp;
 	}
 	@Override
 	public String toString() {
@@ -146,14 +145,6 @@ public class Event  implements java.io.Serializable {
 				+ ", location=" + location + ", ts=" + ts + ", start=" + start
 				+ ", end=" + end + ", type=" + type + ", active=" + active
 				+ "]";
-	}
-
-	public ArrayList<Event> getEvent() {
-		return event;
-	}
-
-	public void setEvent(ArrayList<Event> event) {
-		this.event = event;
 	}
 
 }

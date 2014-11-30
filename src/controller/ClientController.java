@@ -51,6 +51,24 @@ public class ClientController {
 		String gsonString = gson.toJson(sim);
 		sc.Send(gsonString);
 		
+		
+		
 		return sc.recive();
 	}
+	
+	public String getForecast(int month, int day) throws Exception{
+		
+		sim.setOverallID("getForecast");
+		sim.setYear(2014);
+		sim.setMonth(month);
+		sim.setDay(day);
+		
+		String gsonString = gson.toJson(sim);
+		
+			sc.Send(gsonString);
+			
+			return sc.recive();
+			
+	}
+	
 }
