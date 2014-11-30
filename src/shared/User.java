@@ -1,6 +1,6 @@
 package shared;
 
-public class Users implements java.io.Serializable {
+public class User implements java.io.Serializable {
 
 	private String email;
 	private String password;

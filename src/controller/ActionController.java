@@ -33,11 +33,9 @@ public class ActionController implements ActionListener{
 			try {
 				String reply = cc.Login(email, password);
 				if(reply.equals("Login Successful")){
-					cf.Show(cf.WEEKPANEL);
-					System.out.println("Naar hertil");
-					
+					cf.setTitle("Week view");
+					cf.show(cf.WEEKPANEL);
 					String quote = cc.getQuote();
-					
 					cf.getWeekPanel().getQotd().setText("QOTD: " + quote);
 					
 					
@@ -61,6 +59,12 @@ public class ActionController implements ActionListener{
 		
 		else if(cmd.equals(WeekPanel.NEXT)){
 			cf.getWeekPanel().refreshDate(+1);
+		}
+		
+		else if(cmd.equals(DayPanel.BACK)){
+			cf.show(cf.WEEKPANEL);
+			cf.setTitle("Week view");
+			
 		}
 		
 		else{
@@ -110,7 +114,7 @@ public class ActionController implements ActionListener{
 			
 			
 			cf.setTitle(cmd);
-			cf.Show(cf.DAYPANEL);
+			cf.show(cf.DAYPANEL);
 			
 		}
 	}

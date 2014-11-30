@@ -6,11 +6,11 @@ import java.net.UnknownHostException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import shared.Users;
+import shared.User;
 
 public class ClientController {
 
-	Users u = new Users();
+	User u = new User();
 	Gson gson = new GsonBuilder().create();
 	ServerConnection sc = new ServerConnection();
 	

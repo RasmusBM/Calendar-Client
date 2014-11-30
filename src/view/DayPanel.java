@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -12,6 +13,8 @@ public class DayPanel extends JPanel {
 	
 	private ActionController actionController;
 	private JLabel title;
+	private JButton back;
+	public static final String BACK = "Back";
 	
 	public DayPanel(ActionController actionController){
 	
@@ -20,6 +23,11 @@ public class DayPanel extends JPanel {
 		
 		title = new JLabel("");
 		add(title);
+		
+		back = new JButton("Back");
+		back.addActionListener(actionController);
+		back.setActionCommand(BACK);
+		add(back);
 		
 	}
 

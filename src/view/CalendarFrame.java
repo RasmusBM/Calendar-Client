@@ -37,7 +37,7 @@ public class CalendarFrame extends JFrame {
 //		selectedDay = cal.getSelectedDay();
 		
 		//instances of the JPanels 
-		loginPanel = new LoginPanel(actionController);
+//		loginPanel = new LoginPanel(actionController);
 		weekPanel = new WeekPanel(actionController);
 		dayPanel = new DayPanel(actionController);
 		
@@ -48,13 +48,13 @@ public class CalendarFrame extends JFrame {
 		contentPane.setLayout(new CardLayout(0, 0));
 		c = (CardLayout) getContentPane().getLayout();
 		
-		contentPane.add(loginPanel, LOGINPANEL);
+//		contentPane.add(loginPanel, LOGINPANEL);
 		contentPane.add(weekPanel, WEEKPANEL);
 		contentPane.add(dayPanel, DAYPANEL);
 		
 	}
 	
-	public void Show(String card){
+	public void show(String card){
 		
 		c.show(getContentPane(), card);
 	}
