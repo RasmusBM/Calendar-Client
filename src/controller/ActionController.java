@@ -224,32 +224,46 @@ public class ActionController implements ActionListener{
 	
 	public void showTable(int iMonth, int sDay) {
 
+		int space = 0;
+		
+		for (int i = 0; i < events.size(); i++){
+			
+			if(events.get(i).getStartTimestamp().getMonth() == iMonth && events.get(i).getStartTimestamp().getDate() == sDay){
+				space++;
+			}
+		}
+		
 		// creates an object with the column names
 		String[] columnNames = { "Start", "End", "Cal ID", "Event ID", "Title",
 				"Description", "Location" };
 		
+		
 		// Set the data from the transactions array
-		Object[][] data = new Object[events.size()][7];
+		Object[][] data = new Object[space][7];
+		int l = 0;
+		
 		for (int i = 0; i < events.size(); i++){
 			
 			if(events.get(i).getStartTimestamp().getMonth() == iMonth && events.get(i).getStartTimestamp().getDate() == sDay){
 				
-				System.out.println(events.get(i).getId());
+				System.out.println("if koerer"+""+"l: "+l);
 				
 				String start =  events.get(i).getStartTimestamp().getHours() + ":" + events.get(i).getStartTimestamp().getMinutes();
 				String end = events.get(i).getEndTimestamp().getHours() + ":" + events.get(i).getStartTimestamp().getMinutes();
 				
-				data[i][0] =  start;
-				data[i][1] = end;
-				data[i][2] = events.get(i).getCalendarId();
-				data[i][3] = events.get(i).getId();
-				data[i][4] = events.get(i).getTitle();
-				data[i][5] = events.get(i).getDescription();
-				data[i][6] = events.get(i).getLocation();
+				data[l][0] =  start;
+				data[l][1] = end;
+				data[l][2] = events.get(i).getCalendarId();
+				data[l][3] = events.get(i).getId();
+				data[l][4] = events.get(i).getTitle();
+				data[l][5] = events.get(i).getDescription();
+				data[l][6] = events.get(i).getLocation();
+				l++;
 			}
 		
 		}
 
+		
 		// adding the data to the JTable in ShowTransactions
 		cf.getDaypanel().addTable(data, columnNames);
 
