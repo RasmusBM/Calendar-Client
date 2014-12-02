@@ -56,7 +56,7 @@ public class ClientController {
 		return sc.recive();
 	}
 	
-	public String getForecast(int month, int day) throws Exception{
+	public String getForecast(int month, int day){
 		
 		sim.setOverallID("getForecast");
 		sim.setYear(2014);
@@ -69,6 +69,33 @@ public class ClientController {
 			
 			return sc.recive();
 			
+	}
+	
+	public String getNote(int id){
+		
+		sim.setOverallID("getNote");
+		sim.setId(id);
+		
+		String gsonString = gson.toJson(sim);
+		
+		sc.Send(gsonString);
+		
+		return sc.recive();
+	}
+	
+	public String createNote(int noteId, int id, int createdBy, String text){
+		
+		sim.setOverallID("createNote");
+		sim.setNoteId(noteId);
+		sim.setId(id);
+		sim.setUserId(createdBy);
+		sim.setText(text);
+		
+		String gsonString = gson.toJson(sim);
+		
+		sc.Send(gsonString);
+		
+		return sc.recive();
 	}
 	
 }

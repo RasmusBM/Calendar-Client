@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 
 import shared.Event;
 import shared.Forecast;
+import shared.Note;
 import shared.User;
 import view.CalendarFrame;
 import view.DayPanel;
@@ -57,9 +58,8 @@ public class ActionController implements ActionListener{
 				//If user is logged in 
 				if(!reply.equals("invalid")){
 					
-					
 					currentUser = (User) gson.fromJson(reply, User.class);
-					
+										
 					cf.setTitle("Week view");
 					cf.show(cf.WEEKPANEL);
 					
@@ -105,6 +105,7 @@ public class ActionController implements ActionListener{
 		else if(cmd.equals(DayPanel.BACK)){
 			cf.show(cf.WEEKPANEL);
 			cf.setTitle("Week view");
+			cf.getDaypanel().removeNotefield();
 			
 		}
 		
@@ -116,23 +117,39 @@ public class ActionController implements ActionListener{
 			
 			System.out.println(selectedMonth + ""+selectedDay);
 			
-			try {
-				
 				String result = cc.getForecast(selectedMonth+1, selectedDay);
 				
 				Forecast fc = gson.fromJson(result, Forecast.class);
 				
 				cf.getDaypanel().getTitle().setText(fc.getCelsius());
-				
-			}
-			catch (IOException e1){
-				e1.printStackTrace();
-			}catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			
 			
+		}
+		
+		else if(cmd.equals(DayPanel.SHOWNOTE)){
+			
+			cf.getDaypanel().removeTable();
+			cf.getDaypanel().repaint();
+			
+			String result = cc.getNote(42);
+			
+			Note n = gson.fromJson(result, Note.class);
+			
+			cf.getDaypanel().getTitle().setText(n.getText());
+			cf.getDaypanel().getSetNote().setVisible(true);
+			
+		}
+		
+		else if(cmd.equals(DayPanel.SETNOTE)){
+			cf.getDaypanel().removeTable();
+			cf.getDaypanel().repaint();
+			
+			cf.getDaypanel().getNoteField().setVisible(true);
+			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getTitle().getText());
+			
+			String result = cc.createNote(1337, 42, currentUser.getUserId(), cf.getDaypanel().getNoteField().getText());
+			
+			System.out.println(result);
 		}
 		
 		else{

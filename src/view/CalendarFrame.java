@@ -31,7 +31,7 @@ public class CalendarFrame extends JFrame {
 	
 	public CalendarFrame(){
 		
-		setSize(600, 200);
+		setSize(800, 300);
 		setLocationRelativeTo(null);
 		actionController = new ActionController(this);
 //		selectedDay = cal.getSelectedDay();

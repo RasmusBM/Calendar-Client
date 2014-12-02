@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
@@ -25,28 +26,51 @@ public class DayPanel extends JPanel {
 	private JScrollPane scrollPane;
 	private JTable resultTable;
 	private JButton forecast;
+	private JButton showNote;
+	private JButton setNote;
+	private JTextField noteField;
 	public static final String BACK = "Back";
-	public static final String FORECAST = "foreCast"; 
+	public static final String FORECAST = "foreCast";
+	public static final String SHOWNOTE = "showNote";
+	public static final String SETNOTE = "setNote";
 	
 	public DayPanel(ActionController actionController){
 		
 		setLayout(null);
 		
 		title = new JLabel("Label");
-		title.setBounds(168, 11, 139, 16);
+		title.setBounds(244, 6, 139, 16);
 		add(title);
 		
 		back = new JButton("Back");
-		back.setBounds(168, 150, 75, 29);
+		back.setBounds(196, 247, 75, 29);
 		back.addActionListener(actionController);
 		back.setActionCommand(BACK);
 		add(back);
 		
 		forecast = new JButton("Forecast");
-		forecast.setBounds(440, 94, 117, 29);
+		forecast.setBounds(626, 81, 117, 29);
 		forecast.addActionListener(actionController);
 		forecast.setActionCommand(FORECAST);
 		add(forecast);
+		
+		showNote = new JButton("Show Note");
+		showNote.setBounds(626, 50, 111, 29);
+		showNote.addActionListener(actionController);
+		showNote.setActionCommand(SHOWNOTE);
+		add(showNote);
+		
+		setNote = new JButton("Set Note");
+		setNote.setBounds(626, 23, 105, 29);
+		setNote.addActionListener(actionController);
+		setNote.setActionCommand(SETNOTE);
+		setNote.setVisible(false);
+		add(setNote);
+		
+		noteField = new JTextField();
+		noteField.setBounds(50, 50, 400, 100);
+		noteField.setVisible(false);
+		add(noteField);
 		
 //		scrollPane = new JScrollPane();
 //		scrollPane.setBorder(new CompoundBorder(new BevelBorder(
@@ -63,6 +87,10 @@ public class DayPanel extends JPanel {
 //		add(scrollPane);
 		
 	}
+	
+	public void removeNotefield(){
+		this.remove(noteField);
+	}
 
 	public void addTable(Object[][] data,String[] columnNames){
 		
@@ -75,7 +103,7 @@ public class DayPanel extends JPanel {
 		 resultTable.setFillsViewportHeight(true);
 		 
 		 scrollPane = new JScrollPane(resultTable);
-		 scrollPane.setBounds(26, 30, 398, 120);
+		 scrollPane.setBounds(30, 30, 600, 200);
 		 add(scrollPane);	
 	}
 	
@@ -106,6 +134,30 @@ public class DayPanel extends JPanel {
 
 	public void setResultTable(JTable resultTable) {
 		this.resultTable = resultTable;
+	}
+
+	public JButton getShowNote() {
+		return showNote;
+	}
+
+	public void setShowNote(JButton showNote) {
+		this.showNote = showNote;
+	}
+
+	public JTextField getNoteField() {
+		return noteField;
+	}
+
+	public void setNoteField(JTextField noteField) {
+		this.noteField = noteField;
+	}
+
+	public JButton getSetNote() {
+		return setNote;
+	}
+
+	public void setSetNote(JButton setNote) {
+		this.setNote = setNote;
 	}
 	
 }

@@ -66,6 +66,7 @@ public class WeekPanel extends JPanel implements ActionListener{
         p1 = new JPanel(new GridLayout(0,7));
         p1.setBackground(Color.red);
         p1.setVisible(true);
+        p1.setPreferredSize(new Dimension(10,35));
         add(p1, BorderLayout.NORTH);
 		
 		String[] headers = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
