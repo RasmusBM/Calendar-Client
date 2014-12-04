@@ -17,7 +17,7 @@ public class ClientController {
 	SimpleCall sim = new SimpleCall();
 	
 	
-	public String Login(String username, String password) throws Exception {
+	public String Login(String username, String password){
 	
 		System.out.println("login koerer");
 		
@@ -43,7 +43,7 @@ public class ClientController {
 		return sc.recive();
 	}
 	
-	public String getEvents(int userId) throws Exception{
+	public String getEvents(int userId){
 		
 		sim.setOverallID("getEvents");
 		sim.setUserId(userId);

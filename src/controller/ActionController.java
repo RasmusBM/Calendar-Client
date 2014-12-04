@@ -16,6 +16,7 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
+import shared.encryptionAES;
 import view.CalendarFrame;
 import view.DayPanel;
 import view.LoginPanel;
@@ -28,9 +29,11 @@ public class ActionController implements ActionListener{
 	ClientController cc = new ClientController();
 	Gson gson = new GsonBuilder().create();
 	ArrayList<Event> events = new ArrayList<Event>();
+	encryptionAES ea = new encryptionAES(); 
 	Event eventOb = new Event();
 	private int selectedDay;
 	private int selectedMonth;
+	private String encryptpass;
 	
 
 	public ActionController(CalendarFrame cf){
@@ -45,11 +48,20 @@ public class ActionController implements ActionListener{
 			String email = cf.getLoginPanel().getTxtremail().getText();
 			String password = cf.getLoginPanel().getPasswordField().getText();
 			
+			try{
+				encryptpass = ea.encrypt(password);
+				System.out.println(encryptpass);
+			}catch(Exception e1){
+				e1.printStackTrace();
+			}
+			
+			
+			
 			//HUSK at encrypt til password!
 			
 			System.out.println(email + password);
 			
-			try {
+
 				
 				
 				String reply = cc.Login(email, password);
@@ -80,16 +92,7 @@ public class ActionController implements ActionListener{
 					}
 					
 					
-				}
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
+				}			
 			
 		}
 		
