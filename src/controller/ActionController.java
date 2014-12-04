@@ -16,7 +16,6 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
-import shared.encryptionAES;
 import view.CalendarFrame;
 import view.DayPanel;
 import view.LoginPanel;
@@ -29,7 +28,6 @@ public class ActionController implements ActionListener{
 	ClientController cc = new ClientController();
 	Gson gson = new GsonBuilder().create();
 	ArrayList<Event> events = new ArrayList<Event>();
-	encryptionAES ea = new encryptionAES(); 
 	Event eventOb = new Event();
 	private int selectedDay;
 	private int selectedMonth;
@@ -48,22 +46,12 @@ public class ActionController implements ActionListener{
 			String email = cf.getLoginPanel().getTxtremail().getText();
 			String password = cf.getLoginPanel().getPasswordField().getText();
 			
-			try{
-				encryptpass = ea.encrypt(password);
-				System.out.println(encryptpass);
-			}catch(Exception e1){
-				e1.printStackTrace();
-			}
-			
-			
 			
 			//HUSK at encrypt til password!
 			
 			System.out.println(email + password);
 			
-
-				
-				
+			
 				String reply = cc.Login(email, password);
 				
 				
@@ -74,10 +62,6 @@ public class ActionController implements ActionListener{
 										
 					cf.setTitle("Week view");
 					cf.show(cf.WEEKPANEL);
-					
-					//getting quote and displaying it
-//					String quote = cc.getQuote();
-//					cf.getWeekPanel().getQotd().setText("QOTD: " + quote);
 					
 					//fetching calendars and events
 					String result = cc.getEvents(currentUser.getUserId());
@@ -150,7 +134,9 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().getNoteField().setVisible(true);
 			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getTitle().getText());
 			
-			String result = cc.createNote(1337, 42, currentUser.getUserId(), cf.getDaypanel().getNoteField().getText());
+			System.out.println("ID: "+currentUser.getUserId() );
+			
+			String result = cc.createNote(1337, 42, 1, cf.getDaypanel().getNoteField().getText());
 			
 			System.out.println(result);
 		}
