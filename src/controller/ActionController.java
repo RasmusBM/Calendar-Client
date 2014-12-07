@@ -73,26 +73,10 @@ public class ActionController implements ActionListener{
 					cf.show(cf.WEEKPANEL);
 					
 					//fetching events
-					String result = cc.getEvents(currentUser.getUserId());
+					refreshEvents();
 					
-					Event[] event = gson.fromJson(result, Event[].class);
-					
-					for(int i = 0; i < event.length; i++) {
-						
-						events.add(event[i]);
-					}
-					
-					//fetching calendars 
-					String response = cc.getCalendars(currentUser.getUserId());
-					System.out.println(response);
-					
-					Calendar[] calendar = gson.fromJson(response, Calendar[].class);
-					
-					for(int i = 0; i < calendar.length; i++){
-						
-						calendars.add(calendar[i]);
-					}
-					
+					//fetching calendars
+					refreshCalendars();
 					
 				}			
 			
@@ -125,6 +109,7 @@ public class ActionController implements ActionListener{
 			cf.show(cf.WEEKPANEL);
 			cf.setTitle("Week view");
 			cf.getDaypanel().removeNotefield();
+			cf.getEventPanel().clearFields();
 			
 		}
 		
@@ -206,6 +191,10 @@ public class ActionController implements ActionListener{
 			
 			cc.createEvent(currentUser.getUserId(), cf.getEventPanel().getTitleField().getText(), cf.getEventPanel().getDescField().getText(), cf.getEventPanel().getLocationField().getText(), Integer.parseInt(cf.getEventPanel().getCalField().getText()), startTimestamp, endTimestamp);
 			
+			cf.show(cf.WEEKPANEL);
+			cf.getEventPanel().clearFields();
+			
+			refreshEvents();
 			
 		}
 		
@@ -312,6 +301,31 @@ public class ActionController implements ActionListener{
 			cf.setTitle(cmd);
 			cf.show(cf.DAYPANEL);
 			
+		}
+	}
+	
+	public void refreshEvents(){
+		
+		String result = cc.getEvents(currentUser.getUserId());
+		
+		Event[] event = gson.fromJson(result, Event[].class);
+		
+		for(int i = 0; i < event.length; i++) {
+			
+			events.add(event[i]);
+		}
+	}
+	
+	public void refreshCalendars(){
+		
+		String response = cc.getCalendars(currentUser.getUserId());
+		System.out.println(response);
+		
+		Calendar[] calendar = gson.fromJson(response, Calendar[].class);
+		
+		for(int i = 0; i < calendar.length; i++){
+			
+			calendars.add(calendar[i]);
 		}
 	}
 	

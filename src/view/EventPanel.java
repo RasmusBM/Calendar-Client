@@ -32,9 +32,11 @@ public class EventPanel extends JPanel {
 	private JTextField locationField;
 	private JButton createEvent;
 	private JButton delteEvent;
+	private JButton backBtn;
 	
 	public static final String CREATE = "create";
 	public static final String DELETE = "delete";
+	public static final String BACK = "Back";
 	
 	public EventPanel(ActionController actionController){
 		setLayout(null);
@@ -68,32 +70,32 @@ public class EventPanel extends JPanel {
 		add(calField);
 		calField.setColumns(10);
 		
-		startHourField = new JTextField("startHourField");
+		startHourField = new JTextField("");
 		startHourField.setBounds(231, 130, 71, 28);
 		add(startHourField);
 		startHourField.setColumns(10);
 		
-		startMinuteField = new JTextField("startMinuteField");
+		startMinuteField = new JTextField("");
 		startMinuteField.setBounds(395, 134, 51, 20);
 		add(startMinuteField);
 		startMinuteField.setColumns(10);
 		
-		startMinuteTime = new JLabel("Start Minute");
+		startMinuteTime = new JLabel("");
 		startMinuteTime.setBounds(316, 136, 86, 16);
 		add(startMinuteTime);
 		
 		
-		endHourField = new JTextField("endHourField");
+		endHourField = new JTextField("");
 		endHourField.setBounds(231, 167, 71, 28);
 		add(endHourField);
 		endHourField.setColumns(10);
 		
-		endMinuteField = new JTextField("endMinuteField");
+		endMinuteField = new JTextField("");
 		endMinuteField.setBounds(395, 166, 51, 30);
 		add(endMinuteField);
 		endMinuteField.setColumns(10);
 		
-		endMinuteTime = new JLabel("End Minute");
+		endMinuteTime = new JLabel("");
 		endMinuteTime.setBounds(314,167,71,28);
 		add(endMinuteTime);
 		
@@ -124,7 +126,27 @@ public class EventPanel extends JPanel {
 		delteEvent.setActionCommand(DELETE);
 		add(delteEvent);
 		
+		backBtn = new JButton("Back");
+		backBtn.setBounds(101, 254, 117, 29);
+		backBtn.addActionListener(actionController);
+		backBtn.setActionCommand(BACK);
+		add(backBtn);
+		
 
+		
+	}
+	
+	public void clearFields(){
+		
+		calField.setText("");
+		titleField.setText("");
+		descField.setText("");
+		locationField.setText("");
+		startHourField.setText("");
+		startMinuteField.setText("");
+		endHourField.setText("");
+		endMinuteField.setText("");
+		
 		
 	}
 
