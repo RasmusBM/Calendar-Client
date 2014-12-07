@@ -41,6 +41,7 @@ public class ActionController implements ActionListener{
 	private int selectedDay;
 	private int selectedMonth;
 	private String encryptpass;
+	private int selectedEvent;
 	
 
 	public ActionController(CalendarFrame cf){
@@ -109,6 +110,7 @@ public class ActionController implements ActionListener{
 			cf.show(cf.WEEKPANEL);
 			cf.setTitle("Week view");
 			cf.getDaypanel().removeNotefield();
+			cf.getDaypanel().getNoteLbl().setText("");;
 			cf.getEventPanel().clearFields();
 			
 		}
@@ -200,6 +202,9 @@ public class ActionController implements ActionListener{
 		
 		else if(cmd.equals(EventPanel.DELETE)){
 			
+			String eventIdString = JOptionPane.showInputDialog(null, "Insert EventID", null);
+			System.out.println(cc.deleteEvent(Integer.parseInt(eventIdString)));
+			
 		}
 		
 		else if(cmd.equals(DayPanel.FORECAST)){
@@ -222,31 +227,47 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			String stringNoteId = JOptionPane.showInputDialog(null, "Insert ID", null);
+			String stringEventId = JOptionPane.showInputDialog(null, "Insert Event ID", null);
 			
-			int noteId = Integer.parseInt(stringNoteId); 
+			selectedEvent = Integer.parseInt(stringEventId); 
 			
-			String result = cc.getNote(noteId);
+			String result = cc.getNote(selectedEvent);
 			
 			Note n = gson.fromJson(result, Note.class);
 			
-			cf.getDaypanel().getTitle().setText(n.getText());
+			cf.getDaypanel().getTitle().setText("Note for the Event");
 			cf.getDaypanel().getSetNote().setVisible(true);
-			
+			cf.getDaypanel().getNoteLbl().setText(n.getText());
+			cf.getDaypanel().repaint();
 		}
 		
 		else if(cmd.equals(DayPanel.SETNOTE)){
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
+			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			cf.getDaypanel().getNoteLbl().setText("");
+			
 			cf.getDaypanel().getNoteField().setVisible(true);
-			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getTitle().getText());
 			
-			System.out.println("ID: "+currentUser.getUserId() );
+			cf.getDaypanel().getUpdateNote().setVisible(true);
 			
-			String result = cc.createNote(1337, 42, 1, cf.getDaypanel().getNoteField().getText());
+			cf.getDaypanel().repaint();
+						
+		}
+		
+		else if(cmd.equals(DayPanel.UPDATENOTE)){
 			
-			System.out.println(result);
+			cf.getDaypanel().getNoteField().setVisible(false);
+			cf.getDaypanel().getUpdateNote().setVisible(false);
+			
+			String newNote = cf.getDaypanel().getNoteField().getText();
+			
+			cf.getDaypanel().getNoteLbl().setText(newNote);
+			
+			cc.createNote(selectedEvent, currentUser.getUserId(), newNote);
+			
+			
 		}
 		
 		else{

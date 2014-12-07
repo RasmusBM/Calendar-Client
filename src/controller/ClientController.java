@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 
 import shared.Calendar;
 import shared.Event;
+import shared.Note;
 import shared.SimpleCall;
 import shared.User;
 
@@ -20,6 +21,7 @@ public class ClientController {
 	SimpleCall sim = new SimpleCall();
 	Calendar cal = new Calendar();
 	Event event = new Event();
+	Note note = new Note();
 	
 	
 	public String Login(String username, String password){
@@ -101,15 +103,17 @@ public class ClientController {
 		return sc.recive();
 	}
 	
-	public String createNote(int noteId, int id, int createdBy, String text){
+	public String createNote(int id, int createdBy, String text){
 		
-		sim.setOverallID("createNote");
-		sim.setNoteId(noteId);
-		sim.setId(id);
-		sim.setUserId(createdBy);
-		sim.setText(text);
 		
-		String gsonString = gson.toJson(sim);
+		note.setOverallID("createNote");
+		note.setCreatedBy(createdBy);
+		note.setEventID(id);
+		note.setText(text);
+		
+		String gsonString = gson.toJson(note);
+		
+		System.out.println(gsonString);
 		
 		sc.Send(gsonString);
 		
@@ -171,7 +175,17 @@ public class ClientController {
 		sc.Send(gsonString);
 		
 		
-		return "";
+		return sc.recive();
 	}
 	
+	public String deleteEvent(int eventId){
+		
+		sim.setId(eventId);
+		
+		String gsonString = gson.toJson(sim);
+		
+		sc.Send(gsonString);
+		
+		return sc.recive();
+	}
 }

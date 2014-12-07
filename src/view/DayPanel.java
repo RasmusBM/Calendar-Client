@@ -22,6 +22,7 @@ public class DayPanel extends JPanel {
 	
 	private ActionController actionController;
 	private JLabel title;
+	private JLabel noteLbl;
 	private JButton back;
 	private JScrollPane scrollPane;
 	private JTable resultTable;
@@ -29,11 +30,13 @@ public class DayPanel extends JPanel {
 	private JButton showNote;
 	private JButton setNote;
 	private JButton eventMenu;
+	private JButton updateNote;
 	private JTextField noteField;
 	public static final String BACK = "Back";
 	public static final String FORECAST = "foreCast";
 	public static final String SHOWNOTE = "showNote";
 	public static final String SETNOTE = "setNote";
+	public static final String UPDATENOTE = "updateNote";
 	public static final String EVENTMENU = "eventMenu";
 	
 	public DayPanel(ActionController actionController){
@@ -43,6 +46,10 @@ public class DayPanel extends JPanel {
 		title = new JLabel("Label");
 		title.setBounds(244, 6, 139, 16);
 		add(title);
+		
+		noteLbl = new JLabel();
+		noteLbl.setBounds(142, 66, 279, 66);
+		add(noteLbl);
 		
 		back = new JButton("Back");
 		back.setBounds(196, 247, 75, 29);
@@ -69,8 +76,15 @@ public class DayPanel extends JPanel {
 		setNote.setVisible(false);
 		add(setNote);
 		
+		updateNote = new JButton("Update Note");
+		updateNote.setBounds(238, 144, 111, 29);
+		updateNote.addActionListener(actionController);
+		updateNote.setActionCommand(UPDATENOTE);
+		updateNote.setVisible(false);
+		add(updateNote);
+		
 		noteField = new JTextField();
-		noteField.setBounds(50, 50, 400, 100);
+		noteField.setBounds(96, 44, 400, 100);
 		noteField.setVisible(false);
 		add(noteField);
 		
@@ -166,6 +180,22 @@ public class DayPanel extends JPanel {
 
 	public void setSetNote(JButton setNote) {
 		this.setNote = setNote;
+	}
+
+	public JLabel getNoteLbl() {
+		return noteLbl;
+	}
+
+	public void setNoteLbl(JLabel noteLbl) {
+		this.noteLbl = noteLbl;
+	}
+
+	public JButton getUpdateNote() {
+		return updateNote;
+	}
+
+	public void setUpdateNote(JButton updateNote) {
+		this.updateNote = updateNote;
 	}
 	
 }
