@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import shared.Calendar;
+import shared.Event;
 import shared.SimpleCall;
 import shared.User;
 
@@ -18,6 +19,7 @@ public class ClientController {
 	ServerConnection sc = new ServerConnection();
 	SimpleCall sim = new SimpleCall();
 	Calendar cal = new Calendar();
+	Event event = new Event();
 	
 	
 	public String Login(String username, String password){
@@ -155,6 +157,18 @@ public class ClientController {
 	
 	public String createEvent(int createdBy, String title, String description, String location, int calendarId, Timestamp start, Timestamp end){
 		
+		event.setOverallID("createEvent");
+		event.setCreatedby(createdBy);
+		event.setTitle(title);
+		event.setDescription(description);
+		event.setLocation(location);
+		event.setCalendarId(calendarId);
+		event.setStartTimestamp(start);
+		event.setEndTimestamp(end);
+		
+		String gsonString = gson.toJson(event);
+		
+		sc.Send(gsonString);
 		
 		
 		return "";

@@ -191,7 +191,7 @@ public class ActionController implements ActionListener{
 			startDate.setMinutes(Integer.parseInt(cf.getEventPanel().getStartMinuteField().getText()));
 			Timestamp startTimestamp = new Timestamp(startDate.getTime());
 			
-			System.out.println(startDate.getTime());
+			System.out.println(startDate.getDay());
 			
 			//setting endTime
 			Date endDate = new Date();
@@ -202,8 +202,9 @@ public class ActionController implements ActionListener{
 			endDate.setMinutes(Integer.parseInt(cf.getEventPanel().getEndMinuteField().getText()));
 			Timestamp endTimestamp = new Timestamp(endDate.getTime());
 			
-			System.out.println(endDate.getTime());
+			System.out.println(endDate.getYear());
 			
+			cc.createEvent(currentUser.getUserId(), cf.getEventPanel().getTitleField().getText(), cf.getEventPanel().getDescField().getText(), cf.getEventPanel().getLocationField().getText(), Integer.parseInt(cf.getEventPanel().getCalField().getText()), startTimestamp, endTimestamp);
 			
 			
 		}

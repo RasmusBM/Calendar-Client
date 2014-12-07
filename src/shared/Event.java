@@ -8,7 +8,7 @@ import java.util.Date;
 public class Event  implements java.io.Serializable {
 	
 	private  final long serialVersionUID = 3L;
-	private String overallID = "Event";
+	private String overallID;
 	private int id;
     private String eventid;
     private int calendarId;
@@ -145,6 +145,14 @@ public class Event  implements java.io.Serializable {
 				+ ", location=" + location + ", ts=" + ts + ", start=" + start
 				+ ", end=" + end + ", type=" + type + ", active=" + active
 				+ "]";
+	}
+
+	public void setStartTimestamp(Timestamp startTimestamp) {
+		this.startTimestamp = startTimestamp;
+	}
+
+	public void setEndTimestamp(Timestamp endTimestamp) {
+		this.endTimestamp = endTimestamp;
 	}
 
 }
