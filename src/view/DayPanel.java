@@ -28,11 +28,13 @@ public class DayPanel extends JPanel {
 	private JButton forecast;
 	private JButton showNote;
 	private JButton setNote;
+	private JButton eventMenu;
 	private JTextField noteField;
 	public static final String BACK = "Back";
 	public static final String FORECAST = "foreCast";
 	public static final String SHOWNOTE = "showNote";
 	public static final String SETNOTE = "setNote";
+	public static final String EVENTMENU = "eventMenu";
 	
 	public DayPanel(ActionController actionController){
 		
@@ -71,6 +73,12 @@ public class DayPanel extends JPanel {
 		noteField.setBounds(50, 50, 400, 100);
 		noteField.setVisible(false);
 		add(noteField);
+		
+		eventMenu = new JButton("EventMenu");
+		eventMenu.setBounds(331, 247, 111, 29);
+		eventMenu.addActionListener(actionController);
+		eventMenu.setActionCommand(EVENTMENU);
+		add(eventMenu);
 		
 //		scrollPane = new JScrollPane();
 //		scrollPane.setBorder(new CompoundBorder(new BevelBorder(

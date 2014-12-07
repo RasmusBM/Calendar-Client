@@ -20,6 +20,7 @@ public class CalendarFrame extends JFrame {
 	private DayPanel dayPanel;
 	private WeekPanel weekPanel;
 	private CalendarPanel calPanel;
+	private EventPanel eventPanel;
 	private JPanel contentPane;
 	private CardLayout c;
 	private GregorianCalendar selectedDay;
@@ -29,6 +30,7 @@ public class CalendarFrame extends JFrame {
 	public static final String WEEKPANEL = "weekPanel";
 	public static final String DAYPANEL = "dayPanel";
 	public static final String CALPANEL = "calPanel";
+	public static final String EVENTPANEL = "eventPanel";
 	
 	public CalendarFrame(){
 		
@@ -42,6 +44,7 @@ public class CalendarFrame extends JFrame {
 		weekPanel = new WeekPanel(actionController);
 		dayPanel = new DayPanel(actionController);
 		calPanel = new CalendarPanel(actionController);
+		eventPanel = new EventPanel(actionController);
 		
 		
 		//adding the contentPane
@@ -54,6 +57,7 @@ public class CalendarFrame extends JFrame {
 		contentPane.add(weekPanel, WEEKPANEL);
 		contentPane.add(dayPanel, DAYPANEL);
 		contentPane.add(calPanel, CALPANEL);
+		contentPane.add(eventPanel, EVENTPANEL);
 		
 	}
 	
@@ -76,6 +80,10 @@ public class CalendarFrame extends JFrame {
 	
 	public CalendarPanel getCalendarpanel(){
 		return calPanel;
+	}
+	
+	public EventPanel getEventPanel(){
+		return eventPanel;
 	}
 	
 }

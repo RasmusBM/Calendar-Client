@@ -42,7 +42,7 @@ public class CalendarPanel extends JPanel {
 		
 		
 		createCal = new JButton("createCal");
-		createCal.setBounds(626, 81, 117, 29);
+		createCal.setBounds(626, 78, 111, 29);
 		createCal.addActionListener(actionController);
 		createCal.setActionCommand(CREATECAL);
 		add(createCal);
@@ -54,7 +54,7 @@ public class CalendarPanel extends JPanel {
 		add(deleteCal);
 		
 		shareCal = new JButton("Share cal");
-		shareCal.setBounds(626, 23, 105, 29);
+		shareCal.setBounds(626, 19, 105, 29);
 		shareCal.addActionListener(actionController);
 		shareCal.setActionCommand(SHARECAL);
 		add(shareCal);

@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -18,11 +20,14 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
+//import sun.util.calendar.BaseCalendar.Date;
 import view.CalendarFrame;
 import view.CalendarPanel;
 import view.DayPanel;
+import view.EventPanel;
 import view.LoginPanel;
 import view.WeekPanel;
+
 
 public class ActionController implements ActionListener{
 
@@ -168,6 +173,42 @@ public class ActionController implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Calendar shared");
 				
 			}
+			
+		}
+		
+		else if(cmd.equals(DayPanel.EVENTMENU)){
+			cf.show(cf.EVENTPANEL);
+		}
+		
+		else if(cmd.equals(EventPanel.CREATE)){
+			
+			//setting startTime
+			Date startDate = new Date();
+			startDate.setYear(cf.getWeekPanel().START_YEAR);
+			startDate.setMonth(selectedMonth);
+			startDate.setDate(selectedDay);
+			startDate.setHours(Integer.parseInt(cf.getEventPanel().getStartHourField().getText()));
+			startDate.setMinutes(Integer.parseInt(cf.getEventPanel().getStartMinuteField().getText()));
+			Timestamp startTimestamp = new Timestamp(startDate.getTime());
+			
+			System.out.println(startDate.getTime());
+			
+			//setting endTime
+			Date endDate = new Date();
+			endDate.setYear(cf.getWeekPanel().START_YEAR);
+			endDate.setMonth(selectedMonth);
+			endDate.setDate(selectedDay);
+			endDate.setHours(Integer.parseInt(cf.getEventPanel().getEndHourField().getText()));
+			endDate.setMinutes(Integer.parseInt(cf.getEventPanel().getEndMinuteField().getText()));
+			Timestamp endTimestamp = new Timestamp(endDate.getTime());
+			
+			System.out.println(endDate.getTime());
+			
+			
+			
+		}
+		
+		else if(cmd.equals(EventPanel.DELETE)){
 			
 		}
 		

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
+import java.sql.Timestamp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -150,6 +151,13 @@ public class ClientController {
 		sc.Send(gsonString);
 		
 		return sc.recive();
+	}
+	
+	public String createEvent(int createdBy, String title, String description, String location, int calendarId, Timestamp start, Timestamp end){
+		
+		
+		
+		return "";
 	}
 	
 }
