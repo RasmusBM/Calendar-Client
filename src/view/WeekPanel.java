@@ -30,6 +30,8 @@ public class WeekPanel extends JPanel implements ActionListener{
 	GregorianCalendar cal2;
 	private JButton[] button = new JButton[7];
 	private JLabel ugenr;
+	private JLabel aar;
+	private JTextField aarField;
 	private JButton forward;
 	private JButton back;
 	private JTextField uge;
@@ -39,15 +41,24 @@ public class WeekPanel extends JPanel implements ActionListener{
 	private JPanel p3;
 	private JPanel p4;
 	private JPanel p5;
+	private JPanel p6;
+	private JButton calSet;
+	private JButton delCal;
+	private JButton shareCal;
 	private JLabel qotd;
-	private static int START_WEEK;
-	private static int START_YEAR;
+	public static int START_WEEK;
+	public static int START_YEAR;
 	public static String MONTHDAYSEPARATOR =" ";
 	
 	//Declaration of panel constants
 	public static final String PREVIOUS = "Previous";
 	public static final String NEXT = "Next";
 	public static final String DATE = "Date";
+	public static final String GETWEEK = "getWeek";
+	public static final String CALSET = "calSet";
+	public static final String DELCAL= "delCal";
+	public static final String SHARECAL= "shareCal";
+	
 	
 
 	
@@ -63,8 +74,10 @@ public class WeekPanel extends JPanel implements ActionListener{
 		
 		
 		setLayout(new BorderLayout());
+		setPreferredSize(new Dimension(800, 300));
+		
         p1 = new JPanel(new GridLayout(0,7));
-        p1.setBackground(Color.red);
+        p1.setBackground(new Color(63, 89, 146));
         p1.setVisible(true);
         p1.setPreferredSize(new Dimension(10,35));
         add(p1, BorderLayout.NORTH);
@@ -78,31 +91,31 @@ public class WeekPanel extends JPanel implements ActionListener{
         }
         
         p2 = new JPanel(new GridLayout(0,7));
-        p2.setBackground(Color.yellow);
+        p2.setBackground(new Color(63, 89, 146));
         p2.setVisible(true);
-        add(p2, BorderLayout.CENTER);
-        
         for (int x = 0; x < button.length; x++) {
             final int selection = x;
             button[x] = new JButton();
             button[x].setFocusPainted(false);
-            button[x].setBackground(Color.red);
-            p2.add(button[x], new GridLayout(2,7));
+//            p2.add(button[x], new GridLayout(2,7));
+            p2.add(button[x]);
             
         }
+        p2.setPreferredSize(new Dimension(800, 10) );
+        add(p2, BorderLayout.CENTER);
         
 //        displayDate(START_WEEK,START_YEAR);
         displayDate2(START_WEEK,START_YEAR);
 
-        p3 = new JPanel();
-        p3.setBackground(Color.pink);
-        p3.setPreferredSize(new Dimension(100,60));
+        p3 = new JPanel(new FlowLayout());
+        p3.setBackground(new Color(107, 106, 104));
+        p3.setPreferredSize(new Dimension(800, 85));
         p3.setBorder(new EmptyBorder(0,0,0,0));
         p3.setVisible(true);
         add(p3, BorderLayout.SOUTH);
 //        
         p4 = new JPanel(new GridLayout(1,5));
-        p4.setBackground(Color.green);
+        p4.setBackground(new Color(107, 106, 104));
         p4.setVisible(true);
         //adding button
         back = new JButton("<< Previous");
@@ -115,70 +128,60 @@ public class WeekPanel extends JPanel implements ActionListener{
         //adding textfield
         uge = new JTextField(""+ START_WEEK);
         p4.add(uge);
+        //adding label
+        aar = new JLabel("Aar: ");
+        p4.add(aar);
+        //adding textfield
+        aarField = new JTextField(""+ START_YEAR);
+        p4.add(aarField);
         //adding button
         go = new JButton("Go to week");
+        go.addActionListener(actionController);
+        go.setActionCommand(GETWEEK);
         p4.add(go);
         //adding button
         forward = new JButton("Next >>");
         forward.addActionListener(actionController);
+        p3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         forward.setActionCommand(NEXT);
         p4.add(forward);
+        p4.setPreferredSize(new Dimension(800,25));
         //adding panel3
-        p3.add(p4, BorderLayout.NORTH);
+        p3.add(p4);
 //        add(p4, BorderLayout.SOUTH);
         
-        p5 = new JPanel(new GridLayout(1,5));
-        p5.setBackground(Color.orange);
-        p5.setPreferredSize(new Dimension(600,20));
+        p5 = new JPanel(new GridLayout(1,3));
+        p5.setBackground(new Color(107, 106, 104));
+        p5.setPreferredSize(new Dimension(800,25));
         p5.setVisible(true);
-        qotd = new JLabel();
-        p5.add(qotd);
-        p3.add(p5, BorderLayout.SOUTH);
+        calSet = new JButton("Calendar Settings");
+        calSet.addActionListener(actionController);
+        calSet.setActionCommand(CALSET);
+        p5.add(calSet);
+//        delCal = new JButton("deleteCal");
+//        delCal.addActionListener(actionController);
+//        delCal.setActionCommand(DELCAL);
+//        p5.add(delCal);
+//        shareCal = new JButton("shareCal");
+//        shareCal.addActionListener(actionController);
+//        shareCal.setActionCommand(SHARECAL);
+//        p5.add(shareCal);
+        p3.add(p5);
+        
+        p6 = new JPanel(new GridLayout(1,5));
+        p6.setBackground(Color.red);
+        p6.setPreferredSize(new Dimension(800, 25));
+        p6.setVisible(true);
+        p3.add(p6);
 //        add(p4, BorderLayout.SOUTH);
         
          
 
     }
 	
-	
-    public void displayDate(int weekNumber, int yearNumber){
-//    	for (int x = 0; x < button.length; x++)
-//            button[x].setText("lol");
-//    java.util.Calendar cal = java.util.Calendar.getInstance();
-//    cal.set(year, month, 1);
-//    
-//    int dayOfWeek = cal.get(java.util.Calendar.DAY_OF_WEEK);
-//    int daysInMonth = cal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
-//    System.out.println(cal.get(java.util.Calendar.DATE));
-//    System.out.println(daysInMonth);
-//    
-//    for (int x = 0 + dayOfWeek, day = 1; day <= dayOfWeek; x++, day++)
-//            button[x].setText("" + day);
-//    l2.setText(sdf.format(cal.getTime()));
-    	
-    	cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		cal.set(Calendar.WEEK_OF_YEAR, weekNumber);
-		cal.set(Calendar.YEAR, yearNumber);
-    	
-     	
-    	for (int x = 0; x < button.length; x++) {
-       
-    		int k = Integer.parseInt(String.valueOf(cal.getTime().getDate()));
-    		cal.add(Calendar.DATE, 1);
-        	button[x].setText(String.valueOf(k));
-        	
-//        	for(int x2 = 0; x < k+7; x2++ ){
-//        		System.out.println("lol");
-//        	}
-        			
-        }
-    }
     
     public void displayDate2(int weekNumber, int yearNumber){
     	
-//    	cal.setFirstDayOfWeek(Calendar.TUESDAY);
-//    	cal.set(Calendar.WEEK_OF_YEAR, START_WEEK);
-//    	cal.set(Calendar.YEAR, START_YEAR);
      	cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
     	cal.set(Calendar.WEEK_OF_YEAR, weekNumber);
     	cal.set(Calendar.YEAR, yearNumber);
@@ -220,21 +223,12 @@ public class WeekPanel extends JPanel implements ActionListener{
     	START_WEEK =  START_WEEK + newWeek;
     	displayDate2(START_WEEK,START_YEAR);
     	
-//    	if(START_WEEK < 53){
-    		
-//    	displayDate2(START_WEEK += newWeek,START_YEAR);
-//    	}
-//    	else{
-//    		START_WEEK = 1;
-//    		displayDate2(START_WEEK,START_YEAR);
-//    	}
     	String stringNextWeek = String.valueOf(START_WEEK);
+    	String stringNextYear = String.valueOf(START_YEAR);
     	
+    	aarField.setText(stringNextYear);
     	uge.setText(stringNextWeek);
     	
-    	
-    
-//    	nextWeek = START_WEEK -= newWeek;
     	
     }
 
@@ -273,6 +267,25 @@ public class WeekPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 	}
-    
+
+
+	public JTextField getAarField() {
+		return aarField;
+	}
+
+
+	public void setAarField(JTextField aarField) {
+		this.aarField = aarField;
+	}
+
+
+	public JTextField getUge() {
+		return uge;
+	}
+
+
+	public void setUge(JTextField uge) {
+		this.uge = uge;
+	}    
     
 }

@@ -4,22 +4,23 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 
 public class ServerConnection {
 	
-	private Socket clientSocket;
 	private DataOutputStream outToServer;
+	private Socket clientSocket;
 	
 	public void establishConnection(){
 		
 		
 		try {
 			clientSocket = new Socket("localhost", 8888);
-			outToServer = new DataOutputStream(
-					clientSocket.getOutputStream());
+			outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,6 +32,9 @@ public class ServerConnection {
 	}
 	
 	
+
+	
+	
 	public void Send(String gsonString) {
 
 		System.out.println("send koerer");
@@ -39,7 +43,6 @@ public class ServerConnection {
 		
 		byte[]  encrypted = Encryption(gsonString);
 		
-		System.out.println(encrypted);
 		
 		try {
 			outToServer.write(encrypted);
@@ -54,10 +57,12 @@ public class ServerConnection {
 		
 		
 		System.out.println("recive koerer");
-		BufferedReader inFromServer;
+		BufferedReader inFromServer = null;
+		
 		try {
 			inFromServer = new BufferedReader(new InputStreamReader(
 					clientSocket.getInputStream()));
+			
 			String modifiedSentence = inFromServer.readLine();
 			
 			String answer =crypt(modifiedSentence.getBytes());
@@ -81,8 +86,6 @@ public class ServerConnection {
 		byte[] encrypted = input;
 		for (int i = 0; i < encrypted.length; i++) 
 			encrypted[i] = (byte) (encrypted[i] ^ key);
-		
-		System.out.println("KIG HER: "+ encrypted);
 		
 		return encrypted;
 	}

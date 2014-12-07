@@ -26,15 +26,15 @@ public class LoginPanel extends JPanel {
 		setLayout(null);
 		
 		txtremail = new JTextField("dafr13ab@student.cbs.dk");
-		txtremail.setBounds(8, 30, 250, 29);
+		txtremail.setBounds(278, 31, 250, 29);
 		add(txtremail);
 		
 		passwordField = new JPasswordField("123456");
-		passwordField.setBounds(8, 71, 250, 29);
+		passwordField.setBounds(278, 71, 250, 29);
 		add(passwordField);
 		
 		btnLogin = new JButton("Login");
-		btnLogin.setBounds(71, 112, 117, 29);
+		btnLogin.setBounds(348, 112, 117, 29);
 		add(btnLogin);
 		btnLogin.addActionListener(actionController);
 		btnLogin.setActionCommand(LOGINSUBMIT);

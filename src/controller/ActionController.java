@@ -7,16 +7,19 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import shared.Calendar;
 import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
 import view.CalendarFrame;
+import view.CalendarPanel;
 import view.DayPanel;
 import view.LoginPanel;
 import view.WeekPanel;
@@ -28,6 +31,7 @@ public class ActionController implements ActionListener{
 	ClientController cc = new ClientController();
 	Gson gson = new GsonBuilder().create();
 	ArrayList<Event> events = new ArrayList<Event>();
+	ArrayList<Calendar> calendars = new ArrayList<Calendar>();
 	Event eventOb = new Event();
 	private int selectedDay;
 	private int selectedMonth;
@@ -63,7 +67,7 @@ public class ActionController implements ActionListener{
 					cf.setTitle("Week view");
 					cf.show(cf.WEEKPANEL);
 					
-					//fetching calendars and events
+					//fetching events
 					String result = cc.getEvents(currentUser.getUserId());
 					
 					Event[] event = gson.fromJson(result, Event[].class);
@@ -71,8 +75,17 @@ public class ActionController implements ActionListener{
 					for(int i = 0; i < event.length; i++) {
 						
 						events.add(event[i]);
-						System.out.println("Event added");
+					}
+					
+					//fetching calendars 
+					String response = cc.getCalendars(currentUser.getUserId());
+					System.out.println(response);
+					
+					Calendar[] calendar = gson.fromJson(response, Calendar[].class);
+					
+					for(int i = 0; i < calendar.length; i++){
 						
+						calendars.add(calendar[i]);
 					}
 					
 					
@@ -82,11 +95,25 @@ public class ActionController implements ActionListener{
 		
 		else if(cmd.equals(WeekPanel.PREVIOUS)){
 			
-			cf.getWeekPanel().refreshDate(-1);
+			if(cf.getWeekPanel().START_WEEK <= 1){
+				cf.getWeekPanel().START_WEEK = 52;
+				cf.getWeekPanel().START_YEAR--;
+				cf.getWeekPanel().refreshDate(0);
+			}else{
+				
+				cf.getWeekPanel().refreshDate(-1);	
+			}
 		}
 		
 		else if(cmd.equals(WeekPanel.NEXT)){
-			cf.getWeekPanel().refreshDate(+1);
+			
+			if(cf.getWeekPanel().START_WEEK >= 52){
+				cf.getWeekPanel().START_WEEK = 1;
+				cf.getWeekPanel().START_YEAR++;
+				cf.getWeekPanel().refreshDate(0);
+			}else{
+				cf.getWeekPanel().refreshDate(+1);
+			}
 		}
 		
 		else if(cmd.equals(DayPanel.BACK)){
@@ -96,13 +123,51 @@ public class ActionController implements ActionListener{
 			
 		}
 		
+		else if(cmd.equals(WeekPanel.GETWEEK)){
+			int selectedYear = Integer.parseInt(cf.getWeekPanel().getAarField().getText());
+			int selectedWeek = Integer.parseInt(cf.getWeekPanel().getUge().getText());
+			
+			cf.getWeekPanel().displayDate2(selectedWeek, selectedYear);
+			cf.getWeekPanel().START_WEEK = selectedWeek;
+			cf.getWeekPanel().START_YEAR = selectedYear;
+			
+		}
+		
+		else if(cmd.equals(WeekPanel.CALSET)){
+
+			cf.show(cf.CALPANEL);
+			showTable2();
+			
+		}
+		
+		else if(cmd.equals(CalendarPanel.CREATECAL)){
+			String calTitle = JOptionPane.showInputDialog(null, "Title", null);
+			if(cc.createCalendar(calTitle, currentUser.getUserId()).equals("calendar added")){
+				System.out.println("saadan");
+			}else{
+				System.out.println("WHAT?");
+			}
+		}
+		
+		else if(cmd.equals(CalendarPanel.DELTECAL)){
+			String callIdString = JOptionPane.showInputDialog(null, "Insert ID", null);
+			int calIdInt = Integer.parseInt(callIdString);
+			if(cc.deleteCalendar(calIdInt, currentUser.getUserId()).equals("calendar deleted")){
+				System.out.println("deleted");
+			}
+		}
+		
+		else if(cmd.equals(CalendarPanel.SHARECAL)){
+			String callIdString = JOptionPane.showInputDialog(null, "Insert Calendar-ID", null);
+			String userIdString = JOptionPane.showInputDialog(null, "Insert User-ID", null);
+			
+		}
+		
 		else if(cmd.equals(DayPanel.FORECAST)){
 		
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 //			cf.getDaypanel().getTitle().setText("Forecast for the day");
-			
-			System.out.println(selectedMonth + ""+selectedDay);
 			
 				String result = cc.getForecast(selectedMonth+1, selectedDay);
 				
@@ -118,7 +183,11 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			String result = cc.getNote(42);
+			String stringNoteId = JOptionPane.showInputDialog(null, "Insert ID", null);
+			
+			int noteId = Integer.parseInt(stringNoteId); 
+			
+			String result = cc.getNote(noteId);
 			
 			Note n = gson.fromJson(result, Note.class);
 			
@@ -186,38 +255,6 @@ public class ActionController implements ActionListener{
 			
 			System.out.println(iMonth + "" + sDay);
 			
-//			Object[][] data = new Object[events.size()][7];
-//			
-//			String[] columnNames = { "Start", "End", "Cal ID", "Event ID", "Title",
-//					"Description", "Location" };
-//			
-//			
-//			for (int i = 0; i < events.size(); i++){
-//								
-//				if(events.get(i).getStartTimestamp().getMonth() == iMonth && events.get(i).getStartTimestamp().getDate() == sDay){
-//					
-//					System.out.println(events.get(i).getId());
-//					
-//					String start =  events.get(i).getStartTimestamp().getHours() + ":" + events.get(i).getStartTimestamp().getMinutes();
-//					String end = events.get(i).getEndTimestamp().getHours() + ":" + events.get(i).getStartTimestamp().getMinutes();
-//					
-//					data[i][0] =  start;
-//					data[i][1] = end;
-//					data[i][2] = events.get(i).getCalendarId();
-//					data[i][3] = events.get(i).getId();
-//					data[i][4] = events.get(i).getTitle();
-//					data[i][5] = events.get(i).getDescription();
-//					data[i][6] = events.get(i).getLocation();
-//				}
-//			
-//			}
-//			
-//			JTable table = new JTable(data, columnNames);
-//			table.setPreferredScrollableViewportSize(new Dimension(500, 70));
-//			table.setFillsViewportHeight(true);
-//			table.setRowSelectionAllowed(true);
-//			cf.getDaypanel().getScrollPane().getViewport().add(table);
-			
 			
 			showTable(iMonth, sDay);
 			
@@ -269,9 +306,30 @@ public class ActionController implements ActionListener{
 		
 		}
 
-		
 		// adding the data to the JTable in ShowTransactions
 		cf.getDaypanel().addTable(data, columnNames);
 
-	}//end showTransaction
+	}//end showTable
+	
+	public void showTable2(){
+		
+		String[] columnNames = { "ID", "Title", "CreatedBy", "Active"};
+		
+		Object[][] data = new Object[calendars.size()][4];
+		int l = 0;
+		
+		for(int i = 0; i < calendars.size(); i++){
+			
+			data[l][0] = calendars.get(i).getCalendarid();
+			data[l][1] =  calendars.get(i).getTitle();
+			data[l][2] = calendars.get(i).getUserid();
+			data[l][3] = calendars.get(i).isActive();
+			
+			l++;
+		}
+		
+		cf.getCalendarpanel().addTable(data, columnNames);
+		
+		
+	}
 }

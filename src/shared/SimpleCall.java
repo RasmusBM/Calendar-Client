@@ -15,6 +15,7 @@ public class SimpleCall implements java.io.Serializable {
 	private int day;
 	private String text;
 	private int noteId;
+	private int calendarId;
 	
 	public SimpleCall(){
 		
@@ -102,5 +103,13 @@ public class SimpleCall implements java.io.Serializable {
 
 	public void setNoteId(int noteId) {
 		this.noteId = noteId;
+	}
+
+	public int getCalendarId() {
+		return calendarId;
+	}
+
+	public void setCalendarId(int calendarId) {
+		this.calendarId = calendarId;
 	}
 }
