@@ -161,6 +161,14 @@ public class ActionController implements ActionListener{
 			String callIdString = JOptionPane.showInputDialog(null, "Insert Calendar-ID", null);
 			String userIdString = JOptionPane.showInputDialog(null, "Insert User-ID", null);
 			
+			int calIdInt = Integer.parseInt(callIdString);
+			int userIdInt = Integer.parseInt(userIdString);
+			
+			if(cc.shareCalendar(calIdInt, userIdInt).equals("calendar_shared")){
+				JOptionPane.showMessageDialog(null, "Calendar shared");
+				
+			}
+			
 		}
 		
 		else if(cmd.equals(DayPanel.FORECAST)){
