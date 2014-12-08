@@ -115,6 +115,7 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeNotefield();
 			cf.getDaypanel().getNoteLbl().setText("");;
 			cf.getEventPanel().clearFields();
+			cf.getDaypanel().getUpdateNote().setVisible(false);
 			
 		}
 		
@@ -242,10 +243,10 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			cf.getDaypanel().getNoteLbl().setText("");
 			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			cf.getDaypanel().getNoteLbl().setText("");
 			
-			cf.getDaypanel().repaint();
+//			cf.getDaypanel().repaint();
 			
 			cf.getDaypanel().getNoteField().setVisible(true);
 			
