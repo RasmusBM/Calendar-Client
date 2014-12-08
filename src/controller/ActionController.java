@@ -78,9 +78,14 @@ public class ActionController implements ActionListener{
 					
 					//fetching events
 					refreshEvents();
-					
+
 					//fetching calendars
 					refreshCalendars();
+					
+					String qotd = cc.getQuote();
+					cf.getWeekPanel().getQotdTitle().setText(qotd);
+					
+					
 					
 				}			
 			
@@ -116,6 +121,7 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().getNoteLbl().setText("");;
 			cf.getEventPanel().clearFields();
 			cf.getDaypanel().getUpdateNote().setVisible(false);
+			cf.getDaypanel().getSetNote().setVisible(false);
 			
 		}
 		
@@ -139,14 +145,14 @@ public class ActionController implements ActionListener{
 		else if(cmd.equals(CalendarPanel.CREATECAL)){
 			String calTitle = JOptionPane.showInputDialog(null, "Title", null);
 			if(cc.createCalendar(calTitle, currentUser.getUserId()).equals("calendar added")){
-				JOptionPane.showMessageDialog(null, "Calendar created");
-				
-				refreshCalendars();
 				
 				cf.getCalendarpanel().removeTable();
 				cf.getCalendarpanel().repaint();
-				showTable2();
+				JOptionPane.showMessageDialog(null, "Calendar created");
 			}
+			refreshCalendars();
+			showTable2();
+			cf.getCalendarpanel().repaint();
 		}
 		
 		else if(cmd.equals(CalendarPanel.DELTECAL)){
@@ -237,23 +243,36 @@ public class ActionController implements ActionListener{
 			
 			cf.getDaypanel().getNoteLbl().setText(n.getText());
 			
+			cf.getDaypanel().repaint();
+			
 		}
 		
 		else if(cmd.equals(DayPanel.SETNOTE)){
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
-			cf.getDaypanel().getNoteLbl().setText("");
+			cf.getDaypanel().getNoteField().setVisible(true);;
 			
-//			cf.getDaypanel().repaint();
-			
-			cf.getDaypanel().getNoteField().setVisible(true);
+			cf.getDaypanel().repaint();
 			
 			cf.getDaypanel().getUpdateNote().setVisible(true);
 			
 			cf.getDaypanel().repaint();
+			
+			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			cf.getDaypanel().getNoteLbl().setText("");
+			
+			
+			cf.getDaypanel().repaint();
 						
+		}
+		
+		else if(cmd.equals(DayPanel.DELETENOTE)){
+			
+			
+			cc.createNote(selectedEvent, currentUser.getUserId(), "");
+			cf.getDaypanel().getNoteLbl().setText("");
+			JOptionPane.showMessageDialog(null, "Calendar deleted");
 		}
 		
 		else if(cmd.equals(DayPanel.UPDATENOTE)){
@@ -321,17 +340,28 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().getTitle().setText("Events for the day");
 			
 			
-			
-			String result = cc.getForecast(selectedMonth+1, selectedDay);
+			int selectedYear = cf.getWeekPanel().START_YEAR;
+			String result = cc.getForecast(selectedMonth+1, selectedDay, selectedYear );
 			
 			Forecast fc = gson.fromJson(result, Forecast.class);
 			
-			cf.getDaypanel().getTemp().setText("Temp: " + fc.getCelsius());
 			
-			cf.getDaypanel().getWeater().setText("Weater: " + fc.getDesc());
+			if(fc != null){
+				cf.getDaypanel().getTemp().setText("Temp: " + fc.getCelsius());
+				
+				cf.getDaypanel().getWeater().setText("Weater: " + fc.getDesc());	
+				
+				cf.setTitle(cmd);
+				cf.show(cf.DAYPANEL);
+			}else{
+				cf.getDaypanel().getTemp().setText("Temp: " + "N/A");
+				
+				cf.getDaypanel().getWeater().setText("Weater: " + "N/A");
+				System.out.println("ELSE KOERER");
+				cf.setTitle(cmd);
+				cf.show(cf.DAYPANEL);
+			}
 			
-			cf.setTitle(cmd);
-			cf.show(cf.DAYPANEL);
 			
 		}
 	}
@@ -344,6 +374,7 @@ public class ActionController implements ActionListener{
 		
 		for(int i = 0; i < event.length; i++) {
 			
+			System.out.println("Event added");
 			events.add(event[i]);
 		}
 	}
@@ -380,11 +411,8 @@ public class ActionController implements ActionListener{
 		// Set the data from the transactions array
 		Object[][] data = new Object[space][7];
 		int l = 0;
-		
 		for (int i = 0; i < events.size(); i++){
-			
 			if(events.get(i).getStartTimestamp().getMonth() == iMonth && events.get(i).getStartTimestamp().getDate() == sDay){
-				
 				System.out.println("if koerer"+""+"l: "+l);
 				
 				String start =  events.get(i).getStartTimestamp().getHours() + ":" + events.get(i).getStartTimestamp().getMinutes();

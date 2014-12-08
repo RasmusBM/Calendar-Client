@@ -42,9 +42,10 @@ public class ClientController {
 		
 	}
 	
-	public String getQuote() throws Exception{ 
+	public String getQuote(){ 
 		
-		String gsonString = gson.toJson("getQuote");
+		sim.setOverallID("getQuote");
+		String gsonString = gson.toJson(sim);
 		
 		sc.Send(gsonString);
 		
@@ -76,10 +77,10 @@ public class ClientController {
 		return sc.recive();
 	}
 	
-	public String getForecast(int month, int day){
+	public String getForecast(int month, int day, int year){
 		
 		sim.setOverallID("getForecast");
-		sim.setYear(2014);
+		sim.setYear(year);
 		sim.setMonth(month);
 		sim.setDay(day);
 		

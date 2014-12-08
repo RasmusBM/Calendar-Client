@@ -46,6 +46,7 @@ public class WeekPanel extends JPanel implements ActionListener{
 	private JButton delCal;
 	private JButton shareCal;
 	private JLabel qotd;
+	private JLabel qotdTitle;
 	public static int START_WEEK;
 	public static int START_YEAR;
 	public static String MONTHDAYSEPARATOR =" ";
@@ -109,7 +110,7 @@ public class WeekPanel extends JPanel implements ActionListener{
 
         p3 = new JPanel(new FlowLayout());
         p3.setBackground(new Color(107, 106, 104));
-        p3.setPreferredSize(new Dimension(800, 85));
+        p3.setPreferredSize(new Dimension(800, 90));
         p3.setBorder(new EmptyBorder(0,0,0,0));
         p3.setVisible(true);
         add(p3, BorderLayout.SOUTH);
@@ -168,9 +169,17 @@ public class WeekPanel extends JPanel implements ActionListener{
 //        p5.add(shareCal);
         p3.add(p5);
         
-        p6 = new JPanel(new GridLayout(1,5));
-        p6.setBackground(Color.red);
+        p6 = new JPanel();
+        p6.setBackground(new Color(236, 236, 233));
         p6.setPreferredSize(new Dimension(800, 25));
+        p6.setLayout(null);
+        qotd = new JLabel("QOTD");
+        qotd.setBounds(0, 6, 38, 16);
+//        qotd.setBounds(244, 6, 139, 16);
+        p6.add(qotd);
+        qotdTitle = new JLabel("");
+        qotdTitle.setBounds(50, 6, 744, 16);
+        p6.add(qotdTitle);
         p6.setVisible(true);
         p3.add(p6);
 //        add(p4, BorderLayout.SOUTH);
@@ -253,14 +262,14 @@ public class WeekPanel extends JPanel implements ActionListener{
 	}
 
 
-	public JLabel getQotd() {
-		return qotd;
+	public JLabel getQotdTitle() {
+		return qotdTitle;
 	}
 
 
-	public void setQotd(JLabel qotd) {
-		this.qotd = qotd;
-	}
+//	public void setQotd(JLabel qotd) {
+//		this.qotd = qotd;
+//	}
 
 
 	@Override

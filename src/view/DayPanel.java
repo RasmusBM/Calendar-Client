@@ -33,11 +33,13 @@ public class DayPanel extends JPanel {
 	private JButton setNote;
 	private JButton eventMenu;
 	private JButton updateNote;
+	private JButton deleteNote;
 	private JTextField noteField;
 	public static final String BACK = "Back";
 	public static final String SHOWNOTE = "showNote";
 	public static final String SETNOTE = "setNote";
 	public static final String UPDATENOTE = "updateNote";
+	public static final String DELETENOTE = "deleteNote";
 	public static final String EVENTMENU = "eventMenu";
 	
 	public DayPanel(ActionController actionController){
@@ -75,6 +77,12 @@ public class DayPanel extends JPanel {
 		setNote.setActionCommand(SETNOTE);
 		setNote.setVisible(false);
 		add(setNote);
+		
+		deleteNote = new JButton("Delete Note");
+		deleteNote.setBounds(626, 81, 111, 29);
+		deleteNote.addActionListener(actionController);
+		deleteNote.setActionCommand(DELETENOTE);
+		add(deleteNote);
 		
 		updateNote = new JButton("Update Note");
 		updateNote.setBounds(238, 144, 111, 29);

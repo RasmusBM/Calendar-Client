@@ -16,28 +16,19 @@ public class ServerConnection {
 	private Socket clientSocket;
 	
 	public void establishConnection(){
-		
-		
+
 		try {
 			clientSocket = new Socket("localhost", 8888);
 			outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
-	
-
-	
-	
 	public void Send(String gsonString) {
-
-		System.out.println("send koerer");
 		
 		establishConnection();
 		
@@ -48,7 +39,6 @@ public class ServerConnection {
 			outToServer.write(encrypted);
 			outToServer.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -70,7 +60,6 @@ public class ServerConnection {
 			System.out.println(answer);
 			return answer;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
