@@ -158,8 +158,14 @@ public class ActionController implements ActionListener{
 			String callIdString = JOptionPane.showInputDialog(null, "Insert ID", null);
 			int calIdInt = Integer.parseInt(callIdString);
 			if(cc.deleteCalendar(calIdInt, currentUser.getUserId()).equals("calendar deleted")){
+				cf.getCalendarpanel().removeTable();
+				cf.getCalendarpanel().repaint();
 				JOptionPane.showMessageDialog(null, "Calendar deleted");
+				
 			}
+			refreshCalendars();
+			showTable2();
+			cf.getCalendarpanel().repaint();
 		}
 		
 		else if(cmd.equals(CalendarPanel.SHARECAL)){
@@ -217,6 +223,11 @@ public class ActionController implements ActionListener{
 			
 			String eventIdString = JOptionPane.showInputDialog(null, "Insert EventID", null);
 			System.out.println(cc.deleteEvent(Integer.parseInt(eventIdString)));
+			
+			refreshEvents();
+			cf.getEventPanel().clearFields();
+			
+			cf.show(cf.WEEKPANEL);
 			
 		}
 		
@@ -382,6 +393,8 @@ public class ActionController implements ActionListener{
 	
 	public void refreshCalendars(){
 		
+		calendars.removeAll(calendars);
+		
 		String response = cc.getCalendars(currentUser.getUserId());
 		
 		Calendar[] calendar = gson.fromJson(response, Calendar[].class);
@@ -437,9 +450,9 @@ public class ActionController implements ActionListener{
 	
 	public void showTable2(){
 		
-		String[] columnNames = { "ID", "Title", "CreatedBy", "Active"};
+		String[] columnNames = { "ID", "Title", "CreatedBy"};
 		
-		Object[][] data = new Object[calendars.size()][4];
+		Object[][] data = new Object[calendars.size()][3];
 		int l = 0;
 		
 		for(int i = 0; i < calendars.size(); i++){
@@ -447,40 +460,11 @@ public class ActionController implements ActionListener{
 			data[l][0] = calendars.get(i).getCalendarid();
 			data[l][1] =  calendars.get(i).getTitle();
 			data[l][2] = calendars.get(i).getUserid();
-			data[l][3] = calendars.get(i).isActive();
 			
 			l++;
 		}
 		
 		cf.getCalendarpanel().addTable(data, columnNames);
 		
-	}
-	
-	public boolean isDateValid(int year, int month, int day){
-			
-			try {
-				Date now = new Date();
-				now.setHours(0);
-				now.setMinutes(0);
-				now.setSeconds(0);
-				
-				DateFormat format = new SimpleDateFormat("yyyMMdd");
-				String requestDateString = ""+ year +month + day;
-				Date date = format.parse(requestDateString);
-				
-				long nowPlus14Days = now.getTime() + 14 * 24 * 60 * 60 * 1000;
-				
-				if(now.getTime() > date.getTime()){
-					return false;
-				}else if(nowPlus14Days < date.getTime()){
-					return false;
-				}else{
-					return true;
-				}
-			} catch (java.text.ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		return false;
 	}
 }

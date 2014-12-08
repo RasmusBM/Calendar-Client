@@ -181,6 +181,7 @@ public class ClientController {
 	
 	public String deleteEvent(int eventId){
 		
+		sim.setOverallID("deleteEvent");
 		sim.setId(eventId);
 		
 		String gsonString = gson.toJson(sim);
