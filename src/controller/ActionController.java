@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,6 +22,7 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
+import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
 //import sun.util.calendar.BaseCalendar.Date;
 import view.CalendarFrame;
 import view.CalendarPanel;
@@ -135,9 +138,13 @@ public class ActionController implements ActionListener{
 		else if(cmd.equals(CalendarPanel.CREATECAL)){
 			String calTitle = JOptionPane.showInputDialog(null, "Title", null);
 			if(cc.createCalendar(calTitle, currentUser.getUserId()).equals("calendar added")){
-				System.out.println("saadan");
-			}else{
-				System.out.println("WHAT?");
+				JOptionPane.showMessageDialog(null, "Calendar created");
+				
+				refreshCalendars();
+				
+				cf.getCalendarpanel().removeTable();
+				cf.getCalendarpanel().repaint();
+				showTable2();
 			}
 		}
 		
@@ -145,7 +152,7 @@ public class ActionController implements ActionListener{
 			String callIdString = JOptionPane.showInputDialog(null, "Insert ID", null);
 			int calIdInt = Integer.parseInt(callIdString);
 			if(cc.deleteCalendar(calIdInt, currentUser.getUserId()).equals("calendar deleted")){
-				System.out.println("deleted");
+				JOptionPane.showMessageDialog(null, "Calendar deleted");
 			}
 		}
 		
@@ -207,20 +214,6 @@ public class ActionController implements ActionListener{
 			
 		}
 		
-		else if(cmd.equals(DayPanel.FORECAST)){
-		
-			cf.getDaypanel().removeTable();
-			cf.getDaypanel().repaint();
-//			cf.getDaypanel().getTitle().setText("Forecast for the day");
-			
-				String result = cc.getForecast(selectedMonth+1, selectedDay);
-				
-				Forecast fc = gson.fromJson(result, Forecast.class);
-				
-				cf.getDaypanel().getTitle().setText(fc.getCelsius());
-			
-			
-		}
 		
 		else if(cmd.equals(DayPanel.SHOWNOTE)){
 			
@@ -236,17 +229,23 @@ public class ActionController implements ActionListener{
 			Note n = gson.fromJson(result, Note.class);
 			
 			cf.getDaypanel().getTitle().setText("Note for the Event");
+			
 			cf.getDaypanel().getSetNote().setVisible(true);
+			
+			cf.getDaypanel().getNoteLbl().setVisible(true);
+			
 			cf.getDaypanel().getNoteLbl().setText(n.getText());
-			cf.getDaypanel().repaint();
+			
 		}
 		
 		else if(cmd.equals(DayPanel.SETNOTE)){
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
 			cf.getDaypanel().getNoteLbl().setText("");
+			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			
+			cf.getDaypanel().repaint();
 			
 			cf.getDaypanel().getNoteField().setVisible(true);
 			
@@ -319,6 +318,17 @@ public class ActionController implements ActionListener{
 			showTable(iMonth, sDay);
 			
 			cf.getDaypanel().getTitle().setText("Events for the day");
+			
+			
+			
+			String result = cc.getForecast(selectedMonth+1, selectedDay);
+			
+			Forecast fc = gson.fromJson(result, Forecast.class);
+			
+			cf.getDaypanel().getTemp().setText("Temp: " + fc.getCelsius());
+			
+			cf.getDaypanel().getWeater().setText("Weater: " + fc.getDesc());
+			
 			cf.setTitle(cmd);
 			cf.show(cf.DAYPANEL);
 			
@@ -415,6 +425,33 @@ public class ActionController implements ActionListener{
 		
 		cf.getCalendarpanel().addTable(data, columnNames);
 		
-		
+	}
+	
+	public boolean isDateValid(int year, int month, int day){
+			
+			try {
+				Date now = new Date();
+				now.setHours(0);
+				now.setMinutes(0);
+				now.setSeconds(0);
+				
+				DateFormat format = new SimpleDateFormat("yyyMMdd");
+				String requestDateString = ""+ year +month + day;
+				Date date = format.parse(requestDateString);
+				
+				long nowPlus14Days = now.getTime() + 14 * 24 * 60 * 60 * 1000;
+				
+				if(now.getTime() > date.getTime()){
+					return false;
+				}else if(nowPlus14Days < date.getTime()){
+					return false;
+				}else{
+					return true;
+				}
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		return false;
 	}
 }
