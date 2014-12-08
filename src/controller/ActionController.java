@@ -1,10 +1,10 @@
 package controller;
 
-import java.awt.Color;
-import java.awt.Dimension;
+//import java.awt.Color;
+//import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+//import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+//import javax.swing.JTable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,7 +22,7 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
-import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
+//import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
 //import sun.util.calendar.BaseCalendar.Date;
 import view.CalendarFrame;
 import view.CalendarPanel;
@@ -60,7 +60,6 @@ public class ActionController implements ActionListener{
 			String password = cf.getLoginPanel().getPasswordField().getText();
 			
 			
-			//HUSK at encrypt til password!
 			
 			System.out.println(email + password);
 			
@@ -178,6 +177,7 @@ public class ActionController implements ActionListener{
 		}
 		
 		else if(cmd.equals(DayPanel.EVENTMENU)){
+			
 			cf.show(cf.EVENTPANEL);
 		}
 		
@@ -203,14 +203,13 @@ public class ActionController implements ActionListener{
 			endDate.setMinutes(Integer.parseInt(cf.getEventPanel().getEndMinuteField().getText()));
 			Timestamp endTimestamp = new Timestamp(endDate.getTime());
 			
-			System.out.println(endDate.getYear());
 			
 			cc.createEvent(currentUser.getUserId(), cf.getEventPanel().getTitleField().getText(), cf.getEventPanel().getDescField().getText(), cf.getEventPanel().getLocationField().getText(), Integer.parseInt(cf.getEventPanel().getCalField().getText()), startTimestamp, endTimestamp);
 			
-			cf.show(cf.WEEKPANEL);
+			refreshEvents();
 			cf.getEventPanel().clearFields();
 			
-			refreshEvents();
+			cf.show(cf.WEEKPANEL);
 			
 		}
 		
@@ -337,6 +336,7 @@ public class ActionController implements ActionListener{
 			
 			showTable(iMonth, sDay);
 			
+			
 			cf.getDaypanel().getTitle().setText("Events for the day");
 			
 			
@@ -357,7 +357,6 @@ public class ActionController implements ActionListener{
 				cf.getDaypanel().getTemp().setText("Temp: " + "N/A");
 				
 				cf.getDaypanel().getWeater().setText("Weater: " + "N/A");
-				System.out.println("ELSE KOERER");
 				cf.setTitle(cmd);
 				cf.show(cf.DAYPANEL);
 			}
@@ -367,6 +366,8 @@ public class ActionController implements ActionListener{
 	}
 	
 	public void refreshEvents(){
+		
+		events.removeAll(events);
 		
 		String result = cc.getEvents(currentUser.getUserId());
 		
@@ -382,7 +383,6 @@ public class ActionController implements ActionListener{
 	public void refreshCalendars(){
 		
 		String response = cc.getCalendars(currentUser.getUserId());
-		System.out.println(response);
 		
 		Calendar[] calendar = gson.fromJson(response, Calendar[].class);
 		

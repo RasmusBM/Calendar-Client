@@ -10,9 +10,6 @@ import controller.ActionController;
 
 public class CalendarFrame extends JFrame {
 
-	//Declaration of global style constants
-//	public static final int WITDH = 400;
-//	public static final int HEIGHT = 400;
 	
 	//Declaration of attributes
 	private ActionController actionController;
@@ -24,7 +21,6 @@ public class CalendarFrame extends JFrame {
 	private JPanel contentPane;
 	private CardLayout c;
 	private GregorianCalendar selectedDay;
-//	private MyCalendar cal;
 	
 	public static final String LOGINPANEL = "loginPanel";
 	public static final String WEEKPANEL = "weekPanel";

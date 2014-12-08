@@ -124,13 +124,13 @@ public class WeekPanel extends JPanel implements ActionListener{
         back.setActionCommand(PREVIOUS);
         p4.add(back);
         //adding label
-        ugenr = new JLabel("Ugenr:");
+        ugenr = new JLabel("Week Number:");
         p4.add(ugenr);
         //adding textfield
         uge = new JTextField(""+ START_WEEK);
         p4.add(uge);
         //adding label
-        aar = new JLabel("Aar: ");
+        aar = new JLabel("Year: ");
         p4.add(aar);
         //adding textfield
         aarField = new JTextField(""+ START_YEAR);
