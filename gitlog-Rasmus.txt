@@ -1,0 +1,237 @@
+commit fe32fac5a759550d207de8c36decf021058ebe51
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Dec 9 03:44:29 2014 +0100
+
+    Added comments
+
+commit 6ff713a0e7590ad90433749e127d16de74590a47
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Dec 9 03:24:10 2014 +0100
+
+    Added JavaDoc for ActionController and Clientcon
+
+commit 719dd30b029dfdb6bfa4ed88e144fd77dab6d0b6
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Dec 9 02:49:17 2014 +0100
+
+    Corrected libs
+
+commit 7ee03ac7e93ea8e991f3b32f12528b84b3945d11
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Dec 9 01:30:32 2014 +0100
+
+    Minor GUI adjustments
+
+commit 56822bb22bd153be4806a2025fb5898e44a9b4d6
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 22:59:15 2014 +0100
+
+    Deleted unused jars and cleaning in controller
+
+commit 31920f2f899507a4ad2159fb7d48b6c23c057d35
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 22:13:35 2014 +0100
+
+    Deleted QOTD and minor change
+
+commit b72a43261010a4806328a7cfd015bea834d3fdc8
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 15:59:03 2014 +0100
+
+    QuoteOfTheDay and DelteNote is working
+
+commit 98ee779147409c00514f21775e0b2add329e11ce
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 02:18:22 2014 +0100
+
+    Small cleanup in ActionController
+
+commit 84c7199c2375299216a4a0ac8fde31b65330cc87
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 01:20:56 2014 +0100
+
+    Adjusted Forecast in DayPanel
+
+commit d0d62b67f7758a112a29ffac600d0c2a1f908c77
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Dec 8 00:31:38 2014 +0100
+
+    CreateNote added
+
+commit 045f455f63894e8da3bf57df02d4683e5e8e944b
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Dec 7 23:21:06 2014 +0100
+
+    Minor bug fix in actionCrontroller and added btn
+
+commit 02e92f4aab6041bdbd26a889fbaa81aeee227fc3
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Dec 7 22:45:46 2014 +0100
+
+    addEvent working
+
+commit 4f03bf46304343f9683b0c7a3a3a750bcd49394f
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Dec 7 22:00:15 2014 +0100
+
+    Started on the addEvent method
+
+commit 937d94158b77c54a3d6599985a19db87214cd8ab
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Dec 7 20:26:47 2014 +0100
+
+    Added shareCalendar method
+
+commit d9172c49389e09c9e3f657bbff22db0999ffdf98
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Dec 7 19:41:18 2014 +0100
+
+    Majort update, added and deleted classes
+
+commit d336b0b0b7ad5cc5ec95c324388bca241b231975
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Fri Dec 5 00:36:00 2014 +0100
+
+    Removed class and minor change in controllers
+
+commit 994f831002cd1c13d52f156f2e29d5da4ea6fa18
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Thu Dec 4 19:59:45 2014 +0100
+
+    Added AES encryption class and minor adjustments
+
+commit 07daa3dd122dc69defa5a909d89e9000a06fa8aa
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Dec 2 23:54:45 2014 +0100
+
+    Added the getNote function
+
+commit 254c8dbc74186e13fb55c3c8789b914fd152c60c
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Nov 30 18:44:48 2014 +0100
+
+    Fixed showTable method
+
+commit e809978eaefb3e6aa5631ba0935aae06acaec83d
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Nov 30 18:21:21 2014 +0100
+
+    Added Forecast
+
+commit 8df7f4a836b6cbe4c6e5c4ac7ca785b2b4f905ee
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Nov 30 12:30:19 2014 +0100
+
+    Added SimpleCall and Event updated AC
+
+commit db706041e45c76a244562c6f2e9566abf5b940bf
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Nov 30 11:03:56 2014 +0100
+
+    Added a panel and worked more on the frame
+
+commit d5516291c9fc9206ef2098b46ea68079ecf1ce82
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Fri Nov 28 12:46:14 2014 +0100
+
+    Added QOTD function
+
+commit 30bb82c0d234929eca84a2d8548b75b242a62b03
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Fri Nov 28 09:50:37 2014 +0100
+
+    Adding actionCommand to get day and month
+
+commit 129d34a7df643b62e1db775c40155d3da3dbbf16
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Thu Nov 27 11:46:33 2014 +0100
+
+    Some changes in Displaydate method
+
+commit d40767bc8daa234e9a9d29eee1b14320f44660e4
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Thu Nov 27 10:57:25 2014 +0100
+
+    Added new DisplayDate method
+
+commit 79dce406167c47629efd5862227f5d3926d7afe2
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Wed Nov 26 13:05:18 2014 +0100
+
+    Major update in week panel
+    
+    added first good draft for week view
+
+commit 93e70217f000764b40e6fd67403685ad2c094b87
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Nov 25 19:35:04 2014 +0100
+
+    Trying different design for the weekview
+
+commit 20bdbc824a858c8d113c61359ff808305607ac97
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Mon Nov 17 13:47:36 2014 +0100
+
+    Minor change in User and connection class
+
+commit 035d4123d0b7ceb193c61425e0d8c99f5ccf6dbf
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Sun Nov 16 10:36:25 2014 +0100
+
+    Minor change in action controller
+
+commit 5e9cde300868ff5eb84dda5fae606fa334b6453c
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Fri Nov 14 09:59:55 2014 +0100
+
+    Big changes - added server connection and login
+
+commit 2ba2fa667842a1f8447d6481d6f9fc6348ab2d9a
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Nov 11 11:00:42 2014 +0100
+
+    Added first actionlistner
+
+commit c344cbda6ffbd0d8185f38889ae6136346e187d3
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Nov 11 10:42:45 2014 +0100
+
+    Added more classes
+    
+    LoginPanel, ClientController, model classes
+
+commit a2f5d942a2142f11bb06e50e5c2aa449f94da3b1
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Wed Oct 29 11:30:32 2014 +0100
+
+    Trying out different Swing designs
+
+commit 7b05e3a3bd7cf8562996801a7222b64e96b333e6
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Oct 28 20:18:43 2014 +0100
+
+    Initial gui classes and main added
+
+commit 485e788ca25f8c0c9b64b6b0c7d0d2280b2dd05f
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Oct 28 11:07:47 2014 +0100
+
+    Updated ignore
+
+commit 8fe7a8e218085c0ee4e1764812b0f311fc7ec9b9
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Oct 28 11:05:24 2014 +0100
+
+    Added controller,frame and 2 panels
+
+commit 13e0f29066a8070e97cdf40971cc7315df7c9b68
+Author: RasmusBM <rasmus_bm@hotmail.com>
+Date:   Tue Oct 28 11:02:10 2014 +0100
+
+    Initial small changes
+
+commit 4d50f0bec0aec586e85598dfd46ce89b86fb3cba
+Author: Rasmus Bo Madsen <Rasmus_bm@hotmail.com>
+Date:   Tue Oct 28 10:59:15 2014 +0100
+
+    Initial commit

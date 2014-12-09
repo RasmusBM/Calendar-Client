@@ -68,7 +68,6 @@ public class WeekPanel extends JPanel implements ActionListener{
 
 		this.actionController = actionController;
 		
-//		cal.set(GregorianCalendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
 		
 		START_WEEK = cal.get(GregorianCalendar.WEEK_OF_YEAR);
 		START_YEAR = cal.get(GregorianCalendar.YEAR);
@@ -88,7 +87,6 @@ public class WeekPanel extends JPanel implements ActionListener{
         for(int i = 0; i <7; i++){
         	JLabel l = new JLabel(("" + headers[i]), SwingConstants.CENTER);
         	p1.add(l, new GridLayout(2,7));
-//        	add(l,BorderLayout.NORTH);
         }
         
         p2 = new JPanel(new GridLayout(0,7));
@@ -98,14 +96,13 @@ public class WeekPanel extends JPanel implements ActionListener{
             final int selection = x;
             button[x] = new JButton();
             button[x].setFocusPainted(false);
-//            p2.add(button[x], new GridLayout(2,7));
             p2.add(button[x]);
             
         }
         p2.setPreferredSize(new Dimension(800, 10) );
         add(p2, BorderLayout.CENTER);
         
-//        displayDate(START_WEEK,START_YEAR);
+
         displayDate2(START_WEEK,START_YEAR);
 
         p3 = new JPanel(new FlowLayout());
@@ -147,9 +144,7 @@ public class WeekPanel extends JPanel implements ActionListener{
         forward.setActionCommand(NEXT);
         p4.add(forward);
         p4.setPreferredSize(new Dimension(800,25));
-        //adding panel3
         p3.add(p4);
-//        add(p4, BorderLayout.SOUTH);
         
         p5 = new JPanel(new GridLayout(1,3));
         p5.setBackground(new Color(107, 106, 104));
@@ -158,15 +153,7 @@ public class WeekPanel extends JPanel implements ActionListener{
         calSet = new JButton("Calendar Settings");
         calSet.addActionListener(actionController);
         calSet.setActionCommand(CALSET);
-        p5.add(calSet);
-//        delCal = new JButton("deleteCal");
-//        delCal.addActionListener(actionController);
-//        delCal.setActionCommand(DELCAL);
-//        p5.add(delCal);
-//        shareCal = new JButton("shareCal");
-//        shareCal.addActionListener(actionController);
-//        shareCal.setActionCommand(SHARECAL);
-//        p5.add(shareCal);
+        p5.add(calSet);;
         p3.add(p5);
         
         p6 = new JPanel();
@@ -175,14 +162,12 @@ public class WeekPanel extends JPanel implements ActionListener{
         p6.setLayout(null);
         qotd = new JLabel("QOTD");
         qotd.setBounds(0, 6, 38, 16);
-//        qotd.setBounds(244, 6, 139, 16);
         p6.add(qotd);
         qotdTitle = new JLabel("");
         qotdTitle.setBounds(50, 6, 744, 16);
         p6.add(qotdTitle);
         p6.setVisible(true);
         p3.add(p6);
-//        add(p4, BorderLayout.SOUTH);
         
          
 
@@ -196,8 +181,6 @@ public class WeekPanel extends JPanel implements ActionListener{
     	cal.set(Calendar.YEAR, yearNumber);
     	
     	
-//    	int weekday = cal.get(Calendar.DAY_OF_WEEK);
-//    	cal.add(Calendar.DATE,1 - weekday);
     	int iMonth, iDay;
     	
     	for (int x = 0; x <  button.length; x++){
@@ -227,7 +210,6 @@ public class WeekPanel extends JPanel implements ActionListener{
     
     public void refreshDate(int newWeek){
     	
-//    	int nextWeek = START_WEEK += newWeek;
     	
     	START_WEEK =  START_WEEK + newWeek;
     	displayDate2(START_WEEK,START_YEAR);
@@ -265,11 +247,6 @@ public class WeekPanel extends JPanel implements ActionListener{
 	public JLabel getQotdTitle() {
 		return qotdTitle;
 	}
-
-
-//	public void setQotd(JLabel qotd) {
-//		this.qotd = qotd;
-//	}
 
 
 	@Override

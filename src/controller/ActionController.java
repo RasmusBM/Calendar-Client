@@ -1,10 +1,7 @@
 package controller;
 
-//import java.awt.Color;
-//import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
-//import javax.swing.JTable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,8 +18,6 @@ import shared.Event;
 import shared.Forecast;
 import shared.Note;
 import shared.User;
-//import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
-//import sun.util.calendar.BaseCalendar.Date;
 import view.CalendarFrame;
 import view.CalendarPanel;
 import view.DayPanel;
@@ -275,18 +269,13 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-//			cf.getDaypanel().getNoteField().setVisible(true);;
-			
-			
-//			cf.getDaypanel().getUpdateNote().setVisible(true);
 
 			String newNote = JOptionPane.showInputDialog(null, "Insert Note", null);
 			
 			cc.createNote(selectedEvent, currentUser.getUserId(), newNote);
 			
 			cf.getDaypanel().repaint();
-			
-//			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			;
 			cf.getDaypanel().getNoteLbl().setText(newNote);
 			
 			
@@ -469,7 +458,7 @@ public class ActionController implements ActionListener{
 		
 		}
 
-		// adding the data to the JTable in ShowTransactions
+		// adding the data to the JTable
 		cf.getDaypanel().addTable(data, columnNames);
 
 	}//end showTable

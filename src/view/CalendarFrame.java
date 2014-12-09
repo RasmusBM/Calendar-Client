@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 
 import controller.ActionController;
 
+/**
+ * Class that contain the JFram which the JPanel refers to 
+ */
 public class CalendarFrame extends JFrame {
 
 	
