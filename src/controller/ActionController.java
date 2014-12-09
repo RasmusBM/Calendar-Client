@@ -51,6 +51,12 @@ public class ActionController implements ActionListener{
 		
 		this.cf = cf;
 	}
+	
+	/**
+	 * This method handels all the action events activated from the JPanels Uses
+	 * the method getActionCommand to differentiate between the various action
+	 * commands
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		
@@ -381,7 +387,9 @@ public class ActionController implements ActionListener{
 			
 		}
 	}
-	
+	/**
+	 * Gets the events for the specfic user
+	 */
 	public void refreshEvents(){
 		
 		events.removeAll(events);
@@ -397,6 +405,9 @@ public class ActionController implements ActionListener{
 		}
 	}
 	
+	/**
+	 * Gets the calendars for the specfic user
+	 */
 	public void refreshCalendars(){
 		
 		calendars.removeAll(calendars);
@@ -410,7 +421,11 @@ public class ActionController implements ActionListener{
 			calendars.add(calendar[i]);
 		}
 	}
-	
+	/**
+	 * Adds the events for the selected day to the JTable for the day view
+	 * @param iMonth is the clicked month
+	 * @param sDay is the clicked day
+	 */
 	public void showTable(int iMonth, int sDay) {
 
 		int space = 0;
@@ -454,6 +469,9 @@ public class ActionController implements ActionListener{
 
 	}//end showTable
 	
+	/**
+	 * Adds the calendars for the given User
+	 */
 	public void showTable2(){
 		
 		String[] columnNames = { "ID", "Title", "CreatedBy"};
