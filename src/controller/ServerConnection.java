@@ -9,12 +9,20 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Set the settings for the data connection
+ * @author RasmusM
+ *
+ */
 
 public class ServerConnection {
 	
 	private DataOutputStream outToServer;
 	private Socket clientSocket;
 	
+	/**
+	 * Creates a new socket to make the connection possible 
+	 */
 	public void establishConnection(){
 
 		try {
@@ -28,6 +36,10 @@ public class ServerConnection {
 		
 	}
 	
+	/**
+	 * Takes the gsonString, encrypts it and sends it to the server
+	 * @param gsonString
+	 */
 	public void Send(String gsonString) {
 		
 		establishConnection();
@@ -43,10 +55,12 @@ public class ServerConnection {
 		}
 	}
 	
+	/**
+	 * Returns the answer from the server and decrypts it
+	 * @return answer from server
+	 */
 	public String recive(){
 		
-		
-		System.out.println("recive koerer");
 		BufferedReader inFromServer = null;
 		
 		try {
@@ -64,9 +78,15 @@ public class ServerConnection {
 		}
 		
 				
-		return "null2";
+		return "null";
 	}
 	
+	
+	/**
+	 * Encrypts the given string
+	 * @param gsonString
+	 * @return an encrypted String
+	 */
 	public byte[] Encryption(String gsonString){
 		
 		
@@ -79,6 +99,11 @@ public class ServerConnection {
 		return encrypted;
 	}
 	
+	/**
+	 * Decrypts the given b array
+	 * @param b
+	 * @return  the encrypted string
+	 */
 	public String crypt(byte[] b)
 	{
 //		Defines the decryption value of the byte

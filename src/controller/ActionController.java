@@ -31,6 +31,11 @@ import view.EventPanel;
 import view.LoginPanel;
 import view.WeekPanel;
 
+/**
+ * Handels the action events from the GUI 
+ * @author RasmusM
+ *
+ */
 
 public class ActionController implements ActionListener{
 

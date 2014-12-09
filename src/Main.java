@@ -2,6 +2,11 @@ import javax.swing.JFrame;
 
 import view.CalendarFrame;
 
+/**
+ * Main class to start the program
+ * @author RasmusM
+ *
+ */
 
 public class Main {
 

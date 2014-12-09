@@ -13,6 +13,11 @@ import shared.Note;
 import shared.SimpleCall;
 import shared.User;
 
+/**
+ * Gets called by ActionController to send information to the server
+ * @author RasmusM
+ *
+ */
 public class ClientController {
 
 	User currentUser = new User();
