@@ -222,12 +222,15 @@ public class ActionController implements ActionListener{
 		else if(cmd.equals(EventPanel.DELETE)){
 			
 			String eventIdString = JOptionPane.showInputDialog(null, "Insert EventID", null);
-			System.out.println(cc.deleteEvent(Integer.parseInt(eventIdString)));
+			int eventIdInt = Integer.parseInt(eventIdString);
+			
+			cc.deleteEvent(eventIdInt);
 			
 			refreshEvents();
 			cf.getEventPanel().clearFields();
 			
 			cf.show(cf.WEEKPANEL);
+			JOptionPane.showMessageDialog(null, "Event deleted");
 			
 		}
 		
@@ -261,16 +264,19 @@ public class ActionController implements ActionListener{
 			cf.getDaypanel().removeTable();
 			cf.getDaypanel().repaint();
 			
-			cf.getDaypanel().getNoteField().setVisible(true);;
+//			cf.getDaypanel().getNoteField().setVisible(true);;
+			
+			
+//			cf.getDaypanel().getUpdateNote().setVisible(true);
+
+			String newNote = JOptionPane.showInputDialog(null, "Insert Note", null);
+			
+			cc.createNote(selectedEvent, currentUser.getUserId(), newNote);
 			
 			cf.getDaypanel().repaint();
 			
-			cf.getDaypanel().getUpdateNote().setVisible(true);
-			
-			cf.getDaypanel().repaint();
-			
-			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
-			cf.getDaypanel().getNoteLbl().setText("");
+//			cf.getDaypanel().getNoteField().setText(cf.getDaypanel().getNoteLbl().getText());
+			cf.getDaypanel().getNoteLbl().setText(newNote);
 			
 			
 			cf.getDaypanel().repaint();

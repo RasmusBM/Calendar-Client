@@ -30,7 +30,7 @@ public class CalendarPanel extends JPanel {
 		
 		setLayout(null);
 		
-		title = new JLabel("Label");
+		title = new JLabel("Calendars");
 		title.setBounds(244, 6, 139, 16);
 		add(title);
 		

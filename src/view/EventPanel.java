@@ -80,8 +80,8 @@ public class EventPanel extends JPanel {
 		add(startMinuteField);
 		startMinuteField.setColumns(10);
 		
-		startMinuteTime = new JLabel("");
-		startMinuteTime.setBounds(316, 136, 86, 16);
+		startMinuteTime = new JLabel("Start Minute");
+		startMinuteTime.setBounds(314, 136, 86, 16);
 		add(startMinuteTime);
 		
 		
@@ -95,7 +95,7 @@ public class EventPanel extends JPanel {
 		add(endMinuteField);
 		endMinuteField.setColumns(10);
 		
-		endMinuteTime = new JLabel("");
+		endMinuteTime = new JLabel("End Minute");
 		endMinuteTime.setBounds(314,167,71,28);
 		add(endMinuteTime);
 		
@@ -105,7 +105,7 @@ public class EventPanel extends JPanel {
 		titleField.setColumns(10);
 		
 		descField = new JTextField();
-		descField.setBounds(251, 74, 51, 28);
+		descField.setBounds(251, 74, 96, 28);
 		add(descField);
 		descField.setColumns(10);
 		
@@ -115,19 +115,19 @@ public class EventPanel extends JPanel {
 		locationField.setColumns(10);
 		
 		createEvent = new JButton("Create Event");
-		createEvent.setBounds(268, 254, 117, 29);
+		createEvent.setBounds(268, 236, 117, 29);
 		createEvent.addActionListener(actionController);
 		createEvent.setActionCommand(CREATE);
 		add(createEvent);
 		
 		delteEvent = new JButton("Delete Event");
-		delteEvent.setBounds(508, 254, 117, 29);
+		delteEvent.setBounds(503, 236, 117, 29);
 		delteEvent.addActionListener(actionController);
 		delteEvent.setActionCommand(DELETE);
 		add(delteEvent);
 		
 		backBtn = new JButton("Back");
-		backBtn.setBounds(101, 254, 117, 29);
+		backBtn.setBounds(100, 236, 117, 29);
 		backBtn.addActionListener(actionController);
 		backBtn.setActionCommand(BACK);
 		add(backBtn);
